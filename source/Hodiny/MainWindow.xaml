@@ -108,6 +108,8 @@
                         <Label Content="Style:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                         <ComboBox x:Name="ComboBox_Style" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" SelectionChanged="ComboBox_Style_SelectionChanged"/>
 
+                        <Label Content="Language:" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="ComboBox_Lang" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" SelectionChanged="ComboBox_Lang_SelectionChanged"/>
                     </Grid>
                 </TabItem>
 
@@ -285,10 +287,14 @@
         
         <Grid x:Name="Grid_DigitalClock" Opacity="{Binding ElementName=Slider_Transparency,Path=Value}" Visibility="Hidden">
             <Rectangle x:Name="Rectangle_Bg" Fill="Gray" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.IsSharedSizeScope="True"/>
+            <Label Name="Digital_Date" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,100,0,0" Content="5/12/2017"/>
+            <Label Name="Digital_Time" FontSize="50"
+                   VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,100,0" Content="5/12/2017"/>
         </Grid>
 
         <Grid x:Name="Grid_AnalogClock" Opacity="{Binding ElementName=Slider_Transparency,Path=Value}"  Visibility="Visible">
             <Ellipse x:Name="Ellipse_Bg" Fill="Gray" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.IsSharedSizeScope="True"/>
+            <Label Name="Analog_Date" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,30,0,0" Content="5/12/2017"/>
 
             <Rectangle Name="rectangleHour"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="5" Height="70"  RenderTransformOrigin="0.5,1" Fill="Yellow">
                 <Rectangle.RenderTransform>

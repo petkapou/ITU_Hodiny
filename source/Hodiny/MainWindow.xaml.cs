@@ -60,6 +60,11 @@ namespace Hodiny
             ComboBox_Style.Items.Add("Digital");
             ComboBox_Style.SelectedIndex = 0;
 
+            ComboBox_Lang.Items.Add("English (EN)");
+            ComboBox_Lang.Items.Add("Czech (CZ)");
+            ComboBox_Lang.Items.Add("Slovak (SK)");
+            ComboBox_Lang.SelectedIndex = 0;
+
             ComboBox_Bg_Type.Items.Add("Color");
             ComboBox_Bg_Type.Items.Add("Image");
             ComboBox_Bg_Type.SelectedIndex = 0;
@@ -83,16 +88,49 @@ namespace Hodiny
             Slider_Font_Green.Value = fontColor.G = 255;
             Slider_Font_Blue.Value = fontColor.B = 255;
 
+            CalculateTimeDatePosition();
+
             FillFontComboBox(ComobBox_Fonts);
         }
 
         void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            this.Dispatcher.Invoke(DispatcherPriority.Normal, (Action)(() => 
+            this.Dispatcher.Invoke(DispatcherPriority.Normal, (Action)(() =>
             {
                 secondHandRotate.Angle = DateTime.Now.Second * 6;
                 minuteHandRotate.Angle = DateTime.Now.Minute * 6;
                 hourHandRotate.Angle = (DateTime.Now.Hour * 30) + (DateTime.Now.Minute * 0.5);
+                /*switch (Convert.ToInt32(DateTime.Now.DayOfWeek))
+                {
+                    case 1:
+                        Analog_Date.Content = "Mo ";
+                        break;
+                    case 2:
+                        Analog_Date.Content = "Tu ";
+                        break;
+                    case 3:
+                        Analog_Date.Content = "We ";
+                        break;
+                    case 4:
+                        Analog_Date.Content = "Th ";
+                        break;
+                    case 5:
+                        Analog_Date.Content = "Fr ";
+                        break;
+                    case 6:
+                        Analog_Date.Content = "Sa ";
+                        break;
+                    case 0:
+                    case 7:
+                        Analog_Date.Content = "Su ";
+                        break;
+                    default:
+                        break;
+                }*/
+                Analog_Date.Content = DateTime.Now.Date;
+                Digital_Date.Content = DateTime.Now.Date;
+                //Digital_Time.Content = DateTime.Now.TimeOfDay; // Tiskne setiny, fakt hnus
+                Digital_Time.Content = DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
             }
             ));
         }
@@ -123,6 +161,21 @@ namespace Hodiny
         private void tabItem_Exit_Clicked(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+        
+        private void ComboBox_Lang_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (ComboBox_Lang.SelectedIndex)
+            {
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void ComboBox_Style_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -406,6 +459,7 @@ namespace Hodiny
                     this.Height = sizeInfo.NewSize.Width;
                 }
                 CalculateHandLenght(42, 0);
+                CalculateTimeDatePosition();
                 InitializeAnalogClockTextBlockArray();
             }
         }
@@ -535,6 +589,13 @@ namespace Hodiny
             rectangleSecond.Height = this.Width * secondLenght;
             rectangleSecond.Width = this.Width / 65;
             secondHandTransform.Y = -rectangleSecond.Height / 2;
+        }
+
+        private void CalculateTimeDatePosition()
+        {
+            Analog_Date.Margin = new Thickness(0, this.Height / 3, 0, 0);
+            Digital_Date.Margin = new Thickness(0, this.Height / 3, 0, 0);
+            Digital_Time.Margin = new Thickness(0, 0, 0, this.Height / 3);
         }
 
         private void ComboBox_Hand_SelectionChanged(object sender, SelectionChangedEventArgs e)
