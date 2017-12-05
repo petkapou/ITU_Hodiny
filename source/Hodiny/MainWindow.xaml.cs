@@ -27,7 +27,10 @@ namespace Hodiny
         string activeBoard = "HideMenu";
         System.Timers.Timer timer = new System.Timers.Timer(1000);
         private Color bgColor = new Color();
-        private Color fontColor = new Color();
+        private Color fontColorAT = new Color();//analog time
+        private Color fontColorDT = new Color();//digital time
+        private Color fontColorAD = new Color();//analog date
+        private Color fontColorDD = new Color();//digital date
         private Color handColor = new Color();
 
         private double hourLenght = 0.2;
@@ -83,10 +86,27 @@ namespace Hodiny
 
             Slider_Font_Size.Value = 12;
 
-            fontColor.A = 255;
-            Slider_Font_Red.Value = fontColor.R = 255;
-            Slider_Font_Green.Value = fontColor.G = 255;
-            Slider_Font_Blue.Value = fontColor.B = 255;
+            fontColorAT.A = 255;
+            Slider_Font_Red.Value = fontColorAT.R = 255;
+            Slider_Font_Green.Value = fontColorAT.G = 255;
+            Slider_Font_Blue.Value = fontColorAT.B = 255;
+
+            fontColorDT.A = 255;
+            Slider_Font_Red_DT.Value = fontColorDT.R = 255;
+            Slider_Font_Green_DT.Value = fontColorDT.G = 255;
+            Slider_Font_Blue_DT.Value = fontColorDT.B = 255;
+            Digital_Time.FontSize = 50;
+            Slider_Font_Size_DT.Value = 50;
+
+            fontColorAD.A = 255;
+            Slider_Font_Red.Value = fontColorAD.R = 255;
+            Slider_Font_Green.Value = fontColorAD.G = 255;
+            Slider_Font_Blue.Value = fontColorAD.B = 255;
+
+            fontColorDD.A = 255;
+            Slider_Font_Red.Value = fontColorDD.R = 255;
+            Slider_Font_Green.Value = fontColorDD.G = 255;
+            Slider_Font_Blue.Value = fontColorDD.B = 255;
 
             CalculateTimeDatePosition();
 
@@ -141,6 +161,12 @@ namespace Hodiny
                 comboBoxFonts.Items.Add(fontFamily.Source);
             }
 
+            foreach (FontFamily fontFamily in Fonts.SystemFontFamilies)
+            {
+                ComobBox_Fonts_DT.Items.Add(fontFamily.Source);
+            }
+
+            ComobBox_Fonts_DT.SelectedIndex = 0;
             comboBoxFonts.SelectedIndex = 0;
         }
 
@@ -187,15 +213,17 @@ namespace Hodiny
                     Grid_DigitalClock.Visibility = Visibility.Hidden;
                     CheckBox_Font.Visibility = Visibility.Visible;
                     if (CheckBox_Font.IsChecked == false) {
-                        TabItem_Fonts.Visibility = Visibility.Hidden;
-                        TabItem_Fonts.MaxWidth = 0;
+                        TabItem_Fonts_AT.Visibility = Visibility.Hidden;
+                        TabItem_Fonts_AT.MaxWidth = 0;
                         this.HideAnalogClockFont();
                     }
                     else {
-                        TabItem_Fonts.Visibility = Visibility.Visible;
-                        TabItem_Fonts.MaxWidth = 10000;
+                        TabItem_Fonts_AT.Visibility = Visibility.Visible;
+                        TabItem_Fonts_AT.MaxWidth = 10000;
                         this.ShowAnalogClockFont();
                     }
+                    TabItem_Fonts_DT.Visibility = Visibility.Hidden;
+                    TabItem_Fonts_DT.MaxWidth = 0;
                     TabItem_AnalogClock.IsEnabled = true;
                     TabItem_AnalogClock.Visibility = Visibility.Visible;
                     TabItem_AnalogClock.MaxWidth = 10000;
@@ -215,9 +243,11 @@ namespace Hodiny
                     TabItem_AnalogClock.IsEnabled = false;
                     TabItem_AnalogClock.Visibility = Visibility.Hidden;
                     TabItem_AnalogClock.MaxWidth = 0;
-                    TabItem_Fonts.IsEnabled = true;
-                    TabItem_Fonts.Visibility = Visibility.Visible;
-                    TabItem_Fonts.MaxWidth = 10000;
+                    TabItem_Fonts_AT.Visibility = Visibility.Hidden;
+                    TabItem_Fonts_AT.MaxWidth = 0;
+                    this.HideAnalogClockFont();
+                    TabItem_Fonts_DT.Visibility = Visibility.Visible;
+                    TabItem_Fonts_DT.MaxWidth = 10000;
                     break;
 
                 default:
@@ -349,7 +379,9 @@ namespace Hodiny
             }
         }
 
-        private void CheckBox_Italic_Checked(object sender, RoutedEventArgs e)
+        // ANALOG TIME FONTS
+
+        private void CheckBox_Italic_Checked_AT(object sender, RoutedEventArgs e)
         {
             foreach (TextBlock element in this.hourTextArray)
             {
@@ -357,7 +389,7 @@ namespace Hodiny
             }
         }
 
-        private void CheckBox_Bold_Checked(object sender, RoutedEventArgs e)
+        private void CheckBox_Bold_Checked_AT(object sender, RoutedEventArgs e)
         {
             foreach (TextBlock element in this.hourTextArray)
             {
@@ -365,7 +397,7 @@ namespace Hodiny
             }
         }
 
-        private void CheckBox_Italic_Unchecked(object sender, RoutedEventArgs e)
+        private void CheckBox_Italic_Unchecked_AT(object sender, RoutedEventArgs e)
         {
             foreach (TextBlock element in this.hourTextArray)
             {
@@ -373,7 +405,7 @@ namespace Hodiny
             }
         }
 
-        private void CheckBox_Bold_Unchecked(object sender, RoutedEventArgs e)
+        private void CheckBox_Bold_Unchecked_AT(object sender, RoutedEventArgs e)
         {
             foreach (TextBlock element in this.hourTextArray)
             {
@@ -381,7 +413,7 @@ namespace Hodiny
             }
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_SelectionChanged_AT(object sender, SelectionChangedEventArgs e)
         {
             foreach (TextBlock element in this.hourTextArray)
             {
@@ -389,10 +421,11 @@ namespace Hodiny
             }
         }
 
-        private void Slider_Font_Size_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void Slider_Font_Size_ValueChanged_AT(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (this.IsLoaded)
             {
+                Slider_Font_Size.Value = Math.Round(Slider_Font_Size.Value);
                 foreach (TextBlock element in this.hourTextArray)
                 {
                     element.FontSize = Math.Round(Slider_Font_Size.Value);
@@ -400,48 +433,127 @@ namespace Hodiny
             }
         }
 
-        private void Slider_Font_Red_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void Slider_Font_Red_ValueChanged_AT(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            fontColor.R = Convert.ToByte(Math.Round(Slider_Font_Red.Value));
-            SetFontColor();
+            Slider_Font_Red.Value = Math.Round(Slider_Font_Red.Value);
+            fontColorAT.R = Convert.ToByte(Math.Round(Slider_Font_Red.Value));
+            SetFontColor_AT();
         }
 
-        private void Slider_Font_Green_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void Slider_Font_Green_ValueChanged_AT(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            fontColor.G = Convert.ToByte(Math.Round(Slider_Font_Green.Value));
+            Slider_Font_Green.Value = Math.Round(Slider_Font_Green.Value);
+            fontColorAT.G = Convert.ToByte(Math.Round(Slider_Font_Green.Value));
             TextBox_Font_Green.Text = Math.Round(Slider_Font_Green.Value).ToString();
-            SetFontColor();
+            SetFontColor_AT();
         }
 
-        private void Slider_Font_Blue_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void Slider_Font_Blue_ValueChanged_AT(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            fontColor.B = Convert.ToByte(Math.Round(Slider_Font_Blue.Value));
-            SetFontColor();
+            Slider_Font_Blue.Value = Math.Round(Slider_Font_Blue.Value);
+            fontColorAT.B = Convert.ToByte(Math.Round(Slider_Font_Blue.Value));
+            SetFontColor_AT();
         }
 
-        private void SetFontColor()
+        private void SetFontColor_AT()
         {
-            this.SetFontColor(fontColor);
+            this.SetFontColor_AT(fontColorAT);
+        }
+        
+        public void SetFontColor_AT(Color color)
+        {
+            foreach (TextBlock element in hourTextArray)
+            {
+                element.Foreground = new SolidColorBrush(color);
+            }
+        }
+
+        // DIGITAL TIME FONTS
+
+        private void CheckBox_Italic_Checked_DT(object sender, RoutedEventArgs e)
+        {
+            Digital_Time.FontStyle = FontStyles.Italic;
+        }
+
+        private void CheckBox_Bold_Checked_DT(object sender, RoutedEventArgs e)
+        {
+            Digital_Time.FontWeight = FontWeights.Bold;
+        }
+
+        private void CheckBox_Italic_Unchecked_DT(object sender, RoutedEventArgs e)
+        {
+            Digital_Time.FontStyle = FontStyles.Normal;
+        }
+
+        private void CheckBox_Bold_Unchecked_DT(object sender, RoutedEventArgs e)
+        {
+            Digital_Time.FontWeight = FontWeights.Normal;
+        }
+
+        private void ComboBox_SelectionChanged_DT(object sender, SelectionChangedEventArgs e)
+        {
+            Digital_Time.FontFamily = new FontFamily(ComobBox_Fonts.Text);
+        }
+
+        private void Slider_Font_Size_ValueChanged_DT(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider_Font_Size_DT.Value = Math.Round(Slider_Font_Size_DT.Value);
+            if (this.IsLoaded)
+            {
+                Digital_Time.FontSize = Math.Round(Slider_Font_Size_DT.Value);
+            }
+        }
+
+        private void Slider_Font_Red_ValueChanged_DT(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider_Font_Red_DT.Value = Math.Round(Slider_Font_Red_DT.Value);
+            fontColorDT.R = Convert.ToByte(Math.Round(Slider_Font_Red_DT.Value));
+            SetFontColor_DT();
+        }
+
+        private void Slider_Font_Green_ValueChanged_DT(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider_Font_Green_DT.Value = Math.Round(Slider_Font_Green_DT.Value);
+            fontColorDT.G = Convert.ToByte(Math.Round(Slider_Font_Green_DT.Value));
+            TextBox_Font_Green_DT.Text = Math.Round(Slider_Font_Green_DT.Value).ToString();
+            SetFontColor_DT();
+        }
+
+        private void Slider_Font_Blue_ValueChanged_DT(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider_Font_Blue_DT.Value = Math.Round(Slider_Font_Blue_DT.Value);
+            fontColorDT.B = Convert.ToByte(Math.Round(Slider_Font_Blue_DT.Value));
+            SetFontColor_DT();
+        }
+
+        private void SetFontColor_DT()
+        {
+            this.SetFontColor_DT(fontColorDT);
+        }
+
+        public void SetFontColor_DT(Color color)
+        {
+            Digital_Time.Foreground = new SolidColorBrush(color);
         }
 
         private void CheckBox_Font_Checked(object sender, RoutedEventArgs e)
         {
-            if (TabItem_Fonts != null)
+            if (TabItem_Fonts_AT != null)
             {
-                TabItem_Fonts.Visibility = Visibility.Visible;
-                TabItem_Fonts.IsEnabled = true;
-                TabItem_Fonts.MaxWidth = 10000;
+                TabItem_Fonts_AT.Visibility = Visibility.Visible;
+                TabItem_Fonts_AT.IsEnabled = true;
+                TabItem_Fonts_AT.MaxWidth = 10000;
                 this.ShowAnalogClockFont();
             }
         }
 
         private void CheckBox_Font_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (TabItem_Fonts != null)
+            if (TabItem_Fonts_AT != null)
             {
-                TabItem_Fonts.Visibility = Visibility.Hidden;
-                TabItem_Fonts.IsEnabled = false;
-                TabItem_Fonts.MaxWidth = 0;
+                TabItem_Fonts_AT.Visibility = Visibility.Hidden;
+                TabItem_Fonts_AT.IsEnabled = false;
+                TabItem_Fonts_AT.MaxWidth = 0;
                 this.HideAnalogClockFont();
             }
         }
@@ -504,14 +616,6 @@ namespace Hodiny
         {
             Ellipse_Bg.Fill = new ImageBrush(new BitmapImage(new Uri(filename)));
             Rectangle_Bg.Fill = new ImageBrush(new BitmapImage(new Uri(filename)));
-        }
-
-        public void SetFontColor(Color color)
-        {
-            foreach (TextBlock element in hourTextArray)
-            {
-                element.Foreground = new SolidColorBrush(color);
-            }
         }
 
         public void HideAnalogClockFont()
