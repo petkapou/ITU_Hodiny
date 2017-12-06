@@ -250,8 +250,8 @@
                                 </Grid.RowDefinitions>
                                 <CheckBox x:Name="CheckBox_AT" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Show Hour Numbers" Checked="CheckBox_AT_Checked" Unchecked="CheckBox_AT_Unchecked" IsChecked="True" Grid.ColumnSpan="5"/>
 
-                                <CheckBox x:Name="CheckBox_Italic" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Italic" Width="100" Checked="CheckBox_Italic_Checked_AT" Unchecked="CheckBox_Italic_Unchecked_AT"/>
-                                <CheckBox x:Name="CheckBox_Bold" Grid.Row="1" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Left" Content="Bold" Width="100" Checked="CheckBox_Bold_Checked_AT" Unchecked="CheckBox_Bold_Unchecked_AT"/>
+                                <CheckBox x:Name="CheckBox_Italic" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Italic" Checked="CheckBox_Italic_Checked_AT" Unchecked="CheckBox_Italic_Unchecked_AT"/>
+                                <CheckBox x:Name="CheckBox_Bold" Grid.Row="1" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Left" Content="Bold" Checked="CheckBox_Bold_Checked_AT" Unchecked="CheckBox_Bold_Unchecked_AT"/>
 
                                 <Label x:Name="Label_Font" Content="Font:" Grid.Row="2" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left"/>
                                 <ComboBox x:Name="ComobBox_Fonts" Grid.Row="2" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="26" SelectionChanged="ComboBox_SelectionChanged_AT"/>
@@ -292,7 +292,32 @@
                                     <RowDefinition Height="1*"/>
                                     <RowDefinition Height="1*"/>
                                     <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
                                 </Grid.RowDefinitions>
+                                <CheckBox x:Name="CheckBox_AD" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Show Date" Checked="CheckBox_AD_Checked" Unchecked="CheckBox_AD_Unchecked" IsChecked="True" Grid.ColumnSpan="5"/>
+
+                                <CheckBox x:Name="CheckBox_Italic_AD" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Italic" Checked="CheckBox_Italic_Checked_AD" Unchecked="CheckBox_Italic_Unchecked_AD"/>
+                                <CheckBox x:Name="CheckBox_Bold_AD" Grid.Row="1" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Left" Content="Bold" Checked="CheckBox_Bold_Checked_AD" Unchecked="CheckBox_Bold_Unchecked_AD"/>
+
+                                <Label x:Name="Label_Font_AD" Content="Font:" Grid.Row="2" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                <ComboBox x:Name="ComobBox_Fonts_AD" Grid.Row="2" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="26" SelectionChanged="ComboBox_SelectionChanged_AD"/>
+
+                                <Label x:Name="Label_Font_Size_AD" Grid.Row="3" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left" Content="Font Size:"/>
+                                <Slider x:Name="Slider_Font_Size_AD" Grid.Row="3" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Stretch" ValueChanged="Slider_Font_Size_ValueChanged_AD" Maximum="200" SmallChange="1" SelectionEnd="-1" LargeChange="10" Minimum="1"/>
+                                <TextBox x:Name="TextBox_Font_Size_AD" Grid.Row="3" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Size_AD,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+
+                                <Label x:Name="Label_Font_Colo_ADr" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Color" HorizontalContentAlignment="Center"/>
+                                <Label x:Name="Label_Font_Red_AD" Grid.Row="5" Grid.Column="0" Content="Red:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <Slider x:Name="Slider_Font_Red_AD" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Red_ValueChanged_AD" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                                <TextBox x:Name="TextBox_Font_Red_AD" Grid.Row="5" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Red_AD,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+
+                                <Label x:Name="Label_Font_Green_AD" Grid.Row="6" Grid.Column="0" Content="Red:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <Slider x:Name="Slider_Font_Green_AD" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Green_ValueChanged_AD" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                                <TextBox x:Name="TextBox_Font_Green_AD" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Green_AD,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+
+                                <Label x:Name="Label_Font_Blue_AD" Grid.Row="7" Grid.Column="0" Content="Blue:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <Slider x:Name="Slider_Font_Blue_AD" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Blue_ValueChanged_AD" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                                <TextBox x:Name="TextBox_Font_Blue_AD" Grid.Row="7" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Blue,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                             </Grid>
                         </TabItem>
                     </TabControl>
@@ -319,8 +344,8 @@
                                     <RowDefinition Height="1*"/>
                                     <RowDefinition Height="1*"/>
                                 </Grid.RowDefinitions>
-                                <CheckBox x:Name="CheckBox_Italic_DT" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Italic" Width="100" Checked="CheckBox_Italic_Checked_DT" Unchecked="CheckBox_Italic_Unchecked_DT"/>
-                                <CheckBox x:Name="CheckBox_Bold_DT" Grid.Row="0" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Left" Content="Bold" Width="100" Checked="CheckBox_Bold_Checked_DT" Unchecked="CheckBox_Bold_Unchecked_DT"/>
+                                <CheckBox x:Name="CheckBox_Italic_DT" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Italic" Checked="CheckBox_Italic_Checked_DT" Unchecked="CheckBox_Italic_Unchecked_DT"/>
+                                <CheckBox x:Name="CheckBox_Bold_DT" Grid.Row="0" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Left" Content="Bold" Checked="CheckBox_Bold_Checked_DT" Unchecked="CheckBox_Bold_Unchecked_DT"/>
 
                                 <Label x:Name="Label_Font_DT" Content="Font:" Grid.Row="1" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left"/>
                                 <ComboBox x:Name="ComobBox_Fonts_DT" Grid.Row="1" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="26" SelectionChanged="ComboBox_SelectionChanged_DT"/>

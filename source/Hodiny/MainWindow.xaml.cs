@@ -99,9 +99,11 @@ namespace Hodiny
             Slider_Font_Size_DT.Value = 50;
 
             fontColorAD.A = 255;
-            Slider_Font_Red.Value = fontColorAD.R = 255;
-            Slider_Font_Green.Value = fontColorAD.G = 255;
-            Slider_Font_Blue.Value = fontColorAD.B = 255;
+            Slider_Font_Red_AD.Value = fontColorAD.R = 255;
+            Slider_Font_Green_AD.Value = fontColorAD.G = 255;
+            Slider_Font_Blue_AD.Value = fontColorAD.B = 255;
+            Analog_Date.FontSize = 15;
+            Slider_Font_Size_AD.Value = 15;
 
             fontColorDD.A = 255;
             Slider_Font_Red.Value = fontColorDD.R = 255;
@@ -166,6 +168,12 @@ namespace Hodiny
                 ComobBox_Fonts_DT.Items.Add(fontFamily.Source);
             }
 
+            foreach (FontFamily fontFamily in Fonts.SystemFontFamilies)
+            {
+                ComobBox_Fonts_AD.Items.Add(fontFamily.Source);
+            }
+
+            ComobBox_Fonts_AD.SelectedIndex = 0;
             ComobBox_Fonts_DT.SelectedIndex = 0;
             comboBoxFonts.SelectedIndex = 0;
         }
@@ -398,6 +406,16 @@ namespace Hodiny
 
         // ANALOG TIME FONTS
 
+        private void CheckBox_AT_Checked(object sender, RoutedEventArgs e)
+        {
+            this.ShowAnalogClockFont();
+        }
+
+        private void CheckBox_AT_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.HideAnalogClockFont();
+        }
+
         private void CheckBox_Italic_Checked_AT(object sender, RoutedEventArgs e)
         {
             foreach (TextBlock element in this.hourTextArray)
@@ -485,6 +503,90 @@ namespace Hodiny
             }
         }
 
+        // ANALOG DATE FONTS
+
+        private void CheckBox_AD_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Analog_Date != null)
+            {
+                Analog_Date.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void CheckBox_AD_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Analog_Date != null)
+            {
+                Analog_Date.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void CheckBox_Italic_Checked_AD(object sender, RoutedEventArgs e)
+        {
+            Analog_Date.FontStyle = FontStyles.Italic;
+        }
+
+        private void CheckBox_Bold_Checked_AD(object sender, RoutedEventArgs e)
+        {
+            Analog_Date.FontWeight = FontWeights.Bold;
+        }
+
+        private void CheckBox_Italic_Unchecked_AD(object sender, RoutedEventArgs e)
+        {
+            Analog_Date.FontStyle = FontStyles.Normal;
+        }
+
+        private void CheckBox_Bold_Unchecked_AD(object sender, RoutedEventArgs e)
+        {
+            Analog_Date.FontWeight = FontWeights.Normal;
+        }
+
+        private void ComboBox_SelectionChanged_AD(object sender, SelectionChangedEventArgs e)
+        {
+            Analog_Date.FontFamily = new FontFamily(ComobBox_Fonts_AD.Text);
+        }
+
+        private void Slider_Font_Size_ValueChanged_AD(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider_Font_Size_AD.Value = Math.Round(Slider_Font_Size_AD.Value);
+            if (this.IsLoaded)
+            {
+                Analog_Date.FontSize = Math.Round(Slider_Font_Size_AD.Value);
+            }
+        }
+
+        private void Slider_Font_Red_ValueChanged_AD(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider_Font_Red_AD.Value = Math.Round(Slider_Font_Red_AD.Value);
+            fontColorAD.R = Convert.ToByte(Math.Round(Slider_Font_Red_AD.Value));
+            SetFontColor_AD();
+        }
+
+        private void Slider_Font_Green_ValueChanged_AD(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider_Font_Green_AD.Value = Math.Round(Slider_Font_Green_AD.Value);
+            fontColorAD.G = Convert.ToByte(Math.Round(Slider_Font_Green_AD.Value));
+            TextBox_Font_Green_AD.Text = Math.Round(Slider_Font_Green_AD.Value).ToString();
+            SetFontColor_AD();
+        }
+
+        private void Slider_Font_Blue_ValueChanged_AD(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider_Font_Blue_AD.Value = Math.Round(Slider_Font_Blue_AD.Value);
+            fontColorAD.B = Convert.ToByte(Math.Round(Slider_Font_Blue_AD.Value));
+            SetFontColor_AD();
+        }
+
+        private void SetFontColor_AD()
+        {
+            this.SetFontColor_AD(fontColorAD);
+        }
+
+        public void SetFontColor_AD(Color color)
+        {
+            Analog_Date.Foreground = new SolidColorBrush(color);
+        }
+
         // DIGITAL TIME FONTS
 
         private void CheckBox_Italic_Checked_DT(object sender, RoutedEventArgs e)
@@ -509,7 +611,7 @@ namespace Hodiny
 
         private void ComboBox_SelectionChanged_DT(object sender, SelectionChangedEventArgs e)
         {
-            Digital_Time.FontFamily = new FontFamily(ComobBox_Fonts.Text);
+            Digital_Time.FontFamily = new FontFamily(ComobBox_Fonts_DT.Text);
         }
 
         private void Slider_Font_Size_ValueChanged_DT(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -551,16 +653,6 @@ namespace Hodiny
         public void SetFontColor_DT(Color color)
         {
             Digital_Time.Foreground = new SolidColorBrush(color);
-        }
-
-        private void CheckBox_AT_Checked(object sender, RoutedEventArgs e)
-        {
-            this.ShowAnalogClockFont();
-        }
-
-        private void CheckBox_AT_Unchecked(object sender, RoutedEventArgs e)
-        {
-            this.HideAnalogClockFont();
         }
 
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
