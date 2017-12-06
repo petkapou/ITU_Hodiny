@@ -18,7 +18,7 @@
     </Window.Resources>
 
     <Grid x:Name="grid">
-        <Grid Panel.ZIndex="2" Name="pnlLeftMenu" HorizontalAlignment="Left"  VerticalAlignment="Stretch" Width="310" MaxHeight="400" Margin="-325,0,0,0">
+        <Grid Panel.ZIndex="2" Name="pnlLeftMenu" HorizontalAlignment="Left" MaxHeight="700" Margin="-325,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
@@ -27,9 +27,12 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <Border BorderBrush="#000000" BorderThickness="0" Background="#4C808080" Margin="0,0,0,0" Grid.RowSpan="7" />
-            <TabControl Name="MainTabControl" IsSynchronizedWithCurrentItem="True" Opacity="0.7" Grid.RowSpan="7">
+            <!--<Border BorderBrush="#000000" BorderThickness="0" Background="#4C808080" Margin="0,0,0,0" Grid.RowSpan="9" />-->
+            <TabControl Name="MainTabControl" Opacity="0.7" Grid.RowSpan="9">
+                <!-- IsSynchronizedWithCurrentItem="True"-->
                 <TabControl.Resources>
                     <Style TargetType="TabItem">
                         <Setter Property="Template">
@@ -69,7 +72,7 @@
                                         ContentSource="Header"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
-                                        Margin="0"/> <!-- Roztahnuty je label uvnitr aby udelal tlacitko -->
+                                        Margin="0"/>
                                     </Grid>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
@@ -87,9 +90,9 @@
                 <TabItem Header="Common">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1.8*"/>
+                            <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="0.5*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*"/>
@@ -101,18 +104,21 @@
                         </Grid.RowDefinitions>
                         
                         <Label Content="Style:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <ComboBox x:Name="ComboBox_Style" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" SelectionChanged="ComboBox_Style_SelectionChanged"/>
+                        <ComboBox x:Name="ComboBox_Style" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectionChanged="ComboBox_Style_SelectionChanged"/>
 
                         <Label Content="Language:" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <ComboBox x:Name="ComboBox_Lang" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" SelectionChanged="ComboBox_Lang_SelectionChanged"/>
+                        <ComboBox x:Name="ComboBox_Lang" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectionChanged="ComboBox_Lang_SelectionChanged"/>
+
                     </Grid>
                 </TabItem>
 
                 <TabItem Header="Background">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1.8*"/>
-                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="1.7*"/>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="3.5*"/>
+                            <ColumnDefinition Width="0.2*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
@@ -126,36 +132,38 @@
                         </Grid.RowDefinitions>
 
                         <Label x:Name="Label_Transparency" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Transparency:" Margin="0,2" />
-                        <Slider x:Name="Slider_Transparency" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" Maximum="1" SmallChange="0.01" SelectionEnd="-1" LargeChange="0.1" Value="1"/>
-                        <TextBox x:Name="TextBox_Transparency" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Transparency,Path=Value}" Height="22" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Slider x:Name="Slider_Transparency" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Transparency_ValueChanged" Maximum="1" Minimum="0.05" SmallChange="0.01" SelectionEnd="-1" LargeChange="0.1" Value="1"/>
+                        <TextBox x:Name="TextBox_Transparency" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Transparency,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
                         <Label Content="Style:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <ComboBox x:Name="ComboBox_Bg_Type" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" SelectionChanged="ComboBox_Bg_Type_SelectionChanged"/>
+                        <ComboBox x:Name="ComboBox_Bg_Type" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectionChanged="ComboBox_Bg_Type_SelectionChanged"/>
                         
-                        <Label x:Name="Label_Color" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Content="Color" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label x:Name="Label_Color" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" Content="Color" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <Label x:Name="Label_Red" Grid.Row="3" Grid.Column="0" Content="Red:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="Slider_Red" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" ValueChanged="Slider_Red_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
-                        <TextBox x:Name="TextBox_Red" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Red,Path=Value}" Height="22" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Slider x:Name="Slider_Red" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Red_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                        <TextBox x:Name="TextBox_Red" Grid.Row="3" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Red,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
                         <Label x:Name="Label_Green" Grid.Row="4" Grid.Column="0" Content="Green:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="Slider_Green" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" ValueChanged="Slider_Green_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
-                        <TextBox x:Name="TextBox_Green" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Green,Path=Value}" Height="22" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Slider x:Name="Slider_Green" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Green_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                        <TextBox x:Name="TextBox_Green" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Green,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
                         <Label x:Name="Label_Blue" Grid.Row="5" Grid.Column="0" Content="Blue:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="Slider_Blue" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" ValueChanged="Slider_Blue_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
-                        <TextBox x:Name="TextBox_Blue" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Blue,Path=Value}" Height="22" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Slider x:Name="Slider_Blue" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Blue_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                        <TextBox x:Name="TextBox_Blue" Grid.Row="5" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Blue,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
-                        <Label x:Name="Label_Image" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Content="Image" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <TextBox x:Name="TextBox_File" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Width="230" Height="23" HorizontalAlignment="Left" VerticalScrollBarVisibility="Disabled" MaxLines="1"/>
-                        <Button x:Name="Button_File" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="Choose File" HorizontalAlignment="Right" VerticalAlignment="Center" Width="76" Height="23" Click="Button_File_Click"/>
+                        <Label x:Name="Label_Image" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" Content="Image" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBox x:Name="TextBox_File" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Height="23" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Disabled" MaxLines="1"/>
+                        <Button x:Name="Button_File" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1" Content=" Choose File " HorizontalAlignment="Right" VerticalAlignment="Center" Height="23" Click="Button_File_Click"/>
                     </Grid>
                 </TabItem>
 
-                <TabItem x:Name="TabItem_AnalogClock" Header="Analog Clock">
+                <TabItem x:Name="TabItem_AnalogClock" Header="Analog Clock" Height="20" VerticalAlignment="Bottom">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1.8*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="0.1*"/>
                             <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="0.2*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
@@ -172,35 +180,37 @@
                         <CheckBox x:Name="CheckBox_Font" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Font" Width="100" Checked="CheckBox_Font_Checked" Unchecked="CheckBox_Font_Unchecked" IsChecked="True" Grid.ColumnSpan="2"/>
                         
                         <Label Content="Hand:" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <ComboBox x:Name="ComboBox_Hand" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" SelectionChanged="ComboBox_Hand_SelectionChanged"/>
+                        <ComboBox x:Name="ComboBox_Hand" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectionChanged="ComboBox_Hand_SelectionChanged"/>
 
                         <Label x:Name="Label_Hand_Red" Grid.Row="3" Grid.Column="0" Content="Red:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="Slider_Hand_Red" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" ValueChanged="Slider_Hand_Red_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
-                        <TextBox x:Name="TextBox_Hand_Red" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Hand_Red,Path=Value}" Height="22" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Slider x:Name="Slider_Hand_Red" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Hand_Red_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                        <TextBox x:Name="TextBox_Hand_Red" Grid.Row="3" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Hand_Red,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
                         <Label x:Name="Label_Hand_Green" Grid.Row="4" Grid.Column="0" Content="Green:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="Slider_Hand_Green" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" ValueChanged="Slider_Hand_Green_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
-                        <TextBox x:Name="TextBox_Hand_Green" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Hand_Green,Path=Value}" Height="22" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Slider x:Name="Slider_Hand_Green" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Hand_Green_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                        <TextBox x:Name="TextBox_Hand_Green" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Hand_Green,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
                         <Label x:Name="Label_Hand_Blue" Grid.Row="5" Grid.Column="0" Content="Blue:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="Slider_Hand_Blue" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" ValueChanged="Slider_Hand_Blue_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
-                        <TextBox x:Name="TextBox_Hand_Blue" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Hand_Blue,Path=Value}" Height="22" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Slider x:Name="Slider_Hand_Blue" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Hand_Blue_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                        <TextBox x:Name="TextBox_Hand_Blue" Grid.Row="5" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Hand_Blue,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
                         <Label Grid.Row="6" Grid.Column="0" Content="Hand Lenght:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="Slider_Hand_Lenght" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" ValueChanged="Slider_Hand_Lenght_ValueChanged" Maximum="0.5" SmallChange="0.01" SelectionEnd="-1" LargeChange="0.1"/>
-                        <TextBox x:Name="TextBox_Hand_Lenght" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Hand_Lenght,Path=Value}" Height="22" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Slider x:Name="Slider_Hand_Lenght" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Hand_Lenght_ValueChanged" Maximum="0.5" SmallChange="0.01" SelectionEnd="-1" LargeChange="0.1"/>
+                        <TextBox x:Name="TextBox_Hand_Lenght" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Hand_Lenght,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                         
                         <Label Content="Lenght:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="Slider_Lenght" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" Maximum="1" SmallChange="0.01" SelectionEnd="-1" LargeChange="0.1" ValueChanged="Slider_Lenght_ValueChanged"/>
-                        <TextBox x:Name="TextBox_Lenght" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Lenght,Path=Value}" Height="22" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Slider x:Name="Slider_Lenght" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Maximum="1" SmallChange="0.01" SelectionEnd="-1" LargeChange="0.1" ValueChanged="Slider_Lenght_ValueChanged"/>
+                        <TextBox x:Name="TextBox_Lenght" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Lenght,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                      </Grid>
                 </TabItem>
 
                 <TabItem x:Name="TabItem_DigitalClock" Header="Digital Clock">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1.8*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="0.1*"/>
                             <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="0.2*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
@@ -220,8 +230,10 @@
                 <TabItem x:Name="TabItem_Fonts_AT" Header="Fonts">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1.8*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="0.1*"/>
                             <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="0.2*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
@@ -235,105 +247,134 @@
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
                         <CheckBox x:Name="CheckBox_Italic" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Italic" Width="100" Checked="CheckBox_Italic_Checked_AT" Unchecked="CheckBox_Italic_Unchecked_AT"/>
-                        <CheckBox x:Name="CheckBox_Bold" Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Left" Content="Bold" Width="100" Checked="CheckBox_Bold_Checked_AT" Unchecked="CheckBox_Bold_Unchecked_AT"/>
+                        <CheckBox x:Name="CheckBox_Bold" Grid.Row="0" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Left" Content="Bold" Width="100" Checked="CheckBox_Bold_Checked_AT" Unchecked="CheckBox_Bold_Unchecked_AT"/>
 
                         <Label x:Name="Label_Font" Content="Font:" Grid.Row="1" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        <ComboBox x:Name="ComobBox_Fonts" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="160" Height="26" SelectionChanged="ComboBox_SelectionChanged_AT"/>
+                        <ComboBox x:Name="ComobBox_Fonts" Grid.Row="1" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="26" SelectionChanged="ComboBox_SelectionChanged_AT"/>
 
                         <Label x:Name="Label_Font_Size" Grid.Row="2" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left" Content="Font Size:"/>
-                        <Slider x:Name="Slider_Font_Size" Grid.Row="2" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="160" ValueChanged="Slider_Font_Size_ValueChanged_AT" Maximum="200" SmallChange="1" SelectionEnd="-1" LargeChange="10" Minimum="1"/>
-                        <TextBox x:Name="TextBox_Font_Size" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Size,Path=Value}" Height="22" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Slider x:Name="Slider_Font_Size" Grid.Row="2" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Stretch" ValueChanged="Slider_Font_Size_ValueChanged_AT" Maximum="200" SmallChange="1" SelectionEnd="-1" LargeChange="10" Minimum="1"/>
+                        <TextBox x:Name="TextBox_Font_Size" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Size,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
-                        <Label x:Name="Label_Font_Color" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Color" HorizontalContentAlignment="Center"/>
+                        <Label x:Name="Label_Font_Color" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Color" HorizontalContentAlignment="Center"/>
                         <Label x:Name="Label_Font_Red" Grid.Row="4" Grid.Column="0" Content="Red:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="Slider_Font_Red" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" ValueChanged="Slider_Font_Red_ValueChanged_AT" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
-                        <TextBox x:Name="TextBox_Font_Red" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Red,Path=Value}" Height="22" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Slider x:Name="Slider_Font_Red" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Red_ValueChanged_AT" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                        <TextBox x:Name="TextBox_Font_Red" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Red,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
                         <Label x:Name="Label_Font_Green" Grid.Row="5" Grid.Column="0" Content="Red:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="Slider_Font_Green" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" ValueChanged="Slider_Font_Green_ValueChanged_AT" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
-                        <TextBox x:Name="TextBox_Font_Green" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Green,Path=Value}" Height="22" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Slider x:Name="Slider_Font_Green" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Green_ValueChanged_AT" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                        <TextBox x:Name="TextBox_Font_Green" Grid.Row="5" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Green,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
                         <Label x:Name="Label_Font_Blue" Grid.Row="6" Grid.Column="0" Content="Blue:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="Slider_Font_Blue" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" ValueChanged="Slider_Font_Blue_ValueChanged_AT" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
-                        <TextBox x:Name="TextBox_Font_Blue" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Blue,Path=Value}" Height="22" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Slider x:Name="Slider_Font_Blue" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Blue_ValueChanged_AT" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                        <TextBox x:Name="TextBox_Font_Blue" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Blue,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                     </Grid>
                 </TabItem>
                 <!-- DIGITAL TIME FONTS -->
                 <TabItem x:Name="TabItem_Fonts_DT" Header="Fonts">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1.8*"/>
-                            <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                        </Grid.RowDefinitions>
-                        <CheckBox x:Name="CheckBox_Italic_DT" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Italic" Width="100" Checked="CheckBox_Italic_Checked_DT" Unchecked="CheckBox_Italic_Unchecked_DT"/>
-                        <CheckBox x:Name="CheckBox_Bold_DT" Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Left" Content="Bold" Width="100" Checked="CheckBox_Bold_Checked_DT" Unchecked="CheckBox_Bold_Unchecked_DT"/>
+                    <TabControl Name="MainTabControl2">
+                        <!-- IsSynchronizedWithCurrentItem="True"-->
+                        <TabItem x:Name="TabItem_Fonts_AD1" Header="Time Font">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="4*"/>
+                                    <ColumnDefinition Width="0.2*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                <CheckBox x:Name="CheckBox_Italic_DT" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Italic" Width="100" Checked="CheckBox_Italic_Checked_DT" Unchecked="CheckBox_Italic_Unchecked_DT"/>
+                                <CheckBox x:Name="CheckBox_Bold_DT" Grid.Row="0" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Left" Content="Bold" Width="100" Checked="CheckBox_Bold_Checked_DT" Unchecked="CheckBox_Bold_Unchecked_DT"/>
 
-                        <Label x:Name="Label_Font_DT" Content="Font:" Grid.Row="1" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        <ComboBox x:Name="ComobBox_Fonts_DT" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="160" Height="26" SelectionChanged="ComboBox_SelectionChanged_DT"/>
+                                <Label x:Name="Label_Font_DT" Content="Font:" Grid.Row="1" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                <ComboBox x:Name="ComobBox_Fonts_DT" Grid.Row="1" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="26" SelectionChanged="ComboBox_SelectionChanged_DT"/>
 
-                        <Label x:Name="Label_Font_Size_DT" Grid.Row="2" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left" Content="Font Size:"/>
-                        <Slider x:Name="Slider_Font_Size_DT" Grid.Row="2" Grid.Column="1"  VerticalAlignment="Center" HorizontalAlignment="Left" Width="160" ValueChanged="Slider_Font_Size_ValueChanged_DT" Maximum="200" SmallChange="1" SelectionEnd="-1" LargeChange="10" Minimum="1"/>
-                        <TextBox x:Name="TextBox_Font_Size_DT" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Size_DT,Path=Value}" Height="22" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <Label x:Name="Label_Font_Size_DT" Grid.Row="2" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left" Content="Font Size:"/>
+                                <Slider x:Name="Slider_Font_Size_DT" Grid.Row="2" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Stretch" ValueChanged="Slider_Font_Size_ValueChanged_DT" Maximum="200" SmallChange="1" SelectionEnd="-1" LargeChange="10" Minimum="1"/>
+                                <TextBox x:Name="TextBox_Font_Size_DT" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Size_DT,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
-                        <Label x:Name="Label_Font_Color_DT" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Color" HorizontalContentAlignment="Center"/>
-                        <Label x:Name="Label_Font_Red_DT" Grid.Row="4" Grid.Column="0" Content="Red:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="Slider_Font_Red_DT" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" ValueChanged="Slider_Font_Red_ValueChanged_DT" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
-                        <TextBox x:Name="TextBox_Font_Red_DT" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Red_DT,Path=Value}" Height="22" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <Label x:Name="Label_Font_Color_DT" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Color" HorizontalContentAlignment="Center"/>
+                                <Label x:Name="Label_Font_Red_DT" Grid.Row="4" Grid.Column="0" Content="Red:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <Slider x:Name="Slider_Font_Red_DT" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Red_ValueChanged_DT" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                                <TextBox x:Name="TextBox_Font_Red_DT" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Red_DT,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
-                        <Label x:Name="Label_Font_Green_DT" Grid.Row="5" Grid.Column="0" Content="Red:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="Slider_Font_Green_DT" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" ValueChanged="Slider_Font_Green_ValueChanged_DT" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
-                        <TextBox x:Name="TextBox_Font_Green_DT" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Green_DT,Path=Value}" Height="22" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <Label x:Name="Label_Font_Green_DT" Grid.Row="5" Grid.Column="0" Content="Red:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <Slider x:Name="Slider_Font_Green_DT" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Green_ValueChanged_DT" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                                <TextBox x:Name="TextBox_Font_Green_DT" Grid.Row="5" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Green_DT,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
-                        <Label x:Name="Label_Font_Blue_DT" Grid.Row="6" Grid.Column="0" Content="Blue:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="Slider_Font_Blue_DT" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" ValueChanged="Slider_Font_Blue_ValueChanged_DT" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
-                        <TextBox x:Name="TextBox_Font_Blue_DT" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Blue_DT,Path=Value}" Height="22" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                    </Grid>
+                                <Label x:Name="Label_Font_Blue_DT" Grid.Row="6" Grid.Column="0" Content="Blue:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <Slider x:Name="Slider_Font_Blue_DT" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Blue_ValueChanged_DT" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                                <TextBox x:Name="TextBox_Font_Blue_DT" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Blue_DT,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem x:Name="TabItem_Fonts_AD2" Header="Date Font">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="4*"/>
+                                    <ColumnDefinition Width="0.2*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
                 </TabItem>
                 <!-- ANALOG DATE FONTS -->
+                        <!-- IsSynchronizedWithCurrentItem="True"-->
                 <!--<TabItem x:Name="TabItem_Fonts_AD" Header="Date Font">
-                <TabControl Name="MainTabControl2" IsSynchronizedWithCurrentItem="True">
-                <TabItem x:Name="TabItem_Fonts_AD1" Header="Date Font">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1.8*"/>
-                            <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                        </Grid.RowDefinitions>
-                    </Grid>
-                </TabItem>
-                <TabItem x:Name="TabItem_Fonts_AD2" Header="Try Font">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1.8*"/>
-                            <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                        </Grid.RowDefinitions>
-                    </Grid>
+                    <TabControl Name="MainTabControl2">
+                        <TabItem x:Name="TabItem_Fonts_AD1" Header="Date Font">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="4*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                            </Grid>
+                        </TabItem>
+                        <TabItem x:Name="TabItem_Fonts_AD2" Header="Time Font">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="4*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                            </Grid>
                         </TabItem>
                     </TabControl>
                 </TabItem>-->
@@ -341,7 +382,7 @@
                 <!--<TabItem x:Name="TabItem_Fonts_DD" Header="Date Font">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1.8*"/>
+                            <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="4*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
@@ -358,22 +399,22 @@
                         </Grid.RowDefinitions>
                     </Grid>
                 </TabItem>-->
-                <TabItem x:Name="TabItem_Exit" Style="{StaticResource ItemExitStyle}" Content="Clossing application...">
+                <!-- Style="{StaticResource ItemExitStyle}" -->
+                <TabItem x:Name="TabItem_Exit"  Style="{StaticResource ItemExitStyle}" Content="Clossing application...">
                     <TabItem.Header>
                         <Label Content="X"
                                Foreground="White"
                                Background="Transparent"
                                Padding="8,0,8,0"
                                FontWeight="UltraBold"
-                               MouseLeftButtonDown="tabItem_Exit_Clicked"
-                               MouseLeftButtonUp="tabItem_Exit_Clicked"
-                               MouseRightButtonUp="tabItem_Exit_Clicked"
-                               MouseRightButtonDown="tabItem_Exit_Clicked"/>
+                               MouseLeftButtonDown="TabItem_Exit_Clicked"
+                               MouseLeftButtonUp="TabItem_Exit_Clicked"
+                               MouseRightButtonUp="TabItem_Exit_Clicked"
+                               MouseRightButtonDown="TabItem_Exit_Clicked"/>
                     </TabItem.Header>
                 </TabItem>
             </TabControl>
-
-            <Button x:Name="Button_Done" Content="Done" HorizontalAlignment="Center" VerticalAlignment="Center" Width="53" Click="Button_Done_Click" Grid.Row="6"/>
+            <Button x:Name="Button_Done" Content="Done" HorizontalAlignment="Center" VerticalAlignment="Center" Width="53" Click="Button_Done_Click" Grid.Row="9"/>
         </Grid>
         
         <Grid x:Name="Grid_DigitalClock" Opacity="{Binding ElementName=Slider_Transparency,Path=Value}" Visibility="Hidden">

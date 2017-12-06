@@ -43,7 +43,7 @@ namespace Hodiny
             DateTime date = DateTime.Now;
             TimeZone time = TimeZone.CurrentTimeZone;
             TimeSpan difference = time.GetUtcOffset(date);
-            timer.Elapsed += new System.Timers.ElapsedEventHandler(timer_Elapsed);
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(Timer_Elapsed);
             timer.Enabled = true;
         }
 
@@ -113,7 +113,7 @@ namespace Hodiny
             FillFontComboBox(ComobBox_Fonts);
         }
 
-        void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             this.Dispatcher.Invoke(DispatcherPriority.Normal, (Action)(() =>
             {
@@ -184,7 +184,7 @@ namespace Hodiny
             sb.Begin(pnlLeftMenu);
         }
 
-        private void tabItem_Exit_Clicked(object sender, RoutedEventArgs e)
+        private void TabItem_Exit_Clicked(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
@@ -332,24 +332,38 @@ namespace Hodiny
 
         private void Slider_Lenght_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+
+            Slider_Lenght.Value = Math.Round(Slider_Lenght.Value * 100) / 100;
             this.lenght_m = Slider_Lenght.Value;
             this.InitializeAnalogClockTextBlockArray();
         }
 
+        private void Slider_Transparency_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider_Transparency.Value = Math.Round(Slider_Transparency.Value * 100) / 100;
+            if (Slider_Transparency.Value < 0.05)
+            {
+                Slider_Transparency.Value = 0.05;
+            }
+        }
+        
         private void Slider_Red_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            Slider_Red.Value = Math.Round(Slider_Red.Value);
             bgColor.R = Convert.ToByte(Math.Round(Slider_Red.Value));
             SetColor();
         }
 
         private void Slider_Green_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            Slider_Green.Value = Math.Round(Slider_Green.Value);
             bgColor.G = Convert.ToByte(Math.Round(Slider_Green.Value));
             SetColor();
         }
 
         private void Slider_Blue_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            Slider_Blue.Value = Math.Round(Slider_Blue.Value);
             bgColor.B = Convert.ToByte(Math.Round(Slider_Blue.Value));
             SetColor();
         }
@@ -361,10 +375,11 @@ namespace Hodiny
 
         private void Button_File_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-
-            dlg.DefaultExt = ".png";
-            dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
+            {
+                DefaultExt = ".png",
+                Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif"
+            };
 
             Nullable<bool> result = dlg.ShowDialog();
 
@@ -560,6 +575,7 @@ namespace Hodiny
 
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
         {
+            CalculateTimeDatePosition();
             if (Ellipse_Bg.Visibility == Visibility.Visible)
             {
                 if (sizeInfo.WidthChanged)
@@ -571,7 +587,6 @@ namespace Hodiny
                     this.Height = sizeInfo.NewSize.Width;
                 }
                 CalculateHandLenght(42, 0);
-                CalculateTimeDatePosition();
                 InitializeAnalogClockTextBlockArray();
             }
         }
@@ -588,9 +603,11 @@ namespace Hodiny
                 foreach (TextBlock element in hourTextArray)
                 {
                     TranslateTransform position = new TranslateTransform();
-                    Point center = new Point();
-                    center.X = 0.5;
-                    center.Y = 0.5;
+                    Point center = new Point
+                    {
+                        X = 0.5,
+                        Y = 0.5
+                    };
                     position.X = (Math.Cos(drawAngle) * lenght);
                     position.Y = -(Math.Sin(drawAngle) * lenght);
 
@@ -644,23 +661,27 @@ namespace Hodiny
 
         private void Slider_Hand_Lenght_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            Slider_Hand_Lenght.Value = Math.Round(Slider_Hand_Lenght.Value * 100) / 100;
             CalculateHandLenght(ComboBox_Hand.SelectedIndex, Slider_Hand_Lenght.Value);
         }
 
         private void Slider_Hand_Red_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            Slider_Hand_Red.Value = Math.Round(Slider_Hand_Red.Value);
             handColor.R = (byte)Slider_Hand_Red.Value;
             SetHandColor();
         }
 
         private void Slider_Hand_Green_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            Slider_Hand_Green.Value = Math.Round(Slider_Hand_Green.Value);
             handColor.G = (byte)Slider_Hand_Green.Value;
             SetHandColor();
         }
 
         private void Slider_Hand_Blue_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            Slider_Hand_Blue.Value = Math.Round(Slider_Hand_Blue.Value);
             handColor.B = (byte)Slider_Hand_Blue.Value;
             SetHandColor();
         }
