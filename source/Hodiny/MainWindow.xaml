@@ -246,29 +246,32 @@
                                     <RowDefinition Height="1*"/>
                                     <RowDefinition Height="1*"/>
                                     <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
                                 </Grid.RowDefinitions>
-                                <CheckBox x:Name="CheckBox_Italic" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Italic" Width="100" Checked="CheckBox_Italic_Checked_AT" Unchecked="CheckBox_Italic_Unchecked_AT"/>
-                                <CheckBox x:Name="CheckBox_Bold" Grid.Row="0" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Left" Content="Bold" Width="100" Checked="CheckBox_Bold_Checked_AT" Unchecked="CheckBox_Bold_Unchecked_AT"/>
+                                <CheckBox x:Name="CheckBox_AT" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Show Hour Numbers" Checked="CheckBox_AT_Checked" Unchecked="CheckBox_AT_Unchecked" IsChecked="True" Grid.ColumnSpan="5"/>
 
-                                <Label x:Name="Label_Font" Content="Font:" Grid.Row="1" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                                <ComboBox x:Name="ComobBox_Fonts" Grid.Row="1" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="26" SelectionChanged="ComboBox_SelectionChanged_AT"/>
+                                <CheckBox x:Name="CheckBox_Italic" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Italic" Width="100" Checked="CheckBox_Italic_Checked_AT" Unchecked="CheckBox_Italic_Unchecked_AT"/>
+                                <CheckBox x:Name="CheckBox_Bold" Grid.Row="1" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Left" Content="Bold" Width="100" Checked="CheckBox_Bold_Checked_AT" Unchecked="CheckBox_Bold_Unchecked_AT"/>
 
-                                <Label x:Name="Label_Font_Size" Grid.Row="2" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left" Content="Font Size:"/>
-                                <Slider x:Name="Slider_Font_Size" Grid.Row="2" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Stretch" ValueChanged="Slider_Font_Size_ValueChanged_AT" Maximum="200" SmallChange="1" SelectionEnd="-1" LargeChange="10" Minimum="1"/>
-                                <TextBox x:Name="TextBox_Font_Size" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Size,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <Label x:Name="Label_Font" Content="Font:" Grid.Row="2" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                <ComboBox x:Name="ComobBox_Fonts" Grid.Row="2" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="26" SelectionChanged="ComboBox_SelectionChanged_AT"/>
 
-                                <Label x:Name="Label_Font_Color" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Color" HorizontalContentAlignment="Center"/>
-                                <Label x:Name="Label_Font_Red" Grid.Row="4" Grid.Column="0" Content="Red:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <Slider x:Name="Slider_Font_Red" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Red_ValueChanged_AT" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
-                                <TextBox x:Name="TextBox_Font_Red" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Red,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <Label x:Name="Label_Font_Size" Grid.Row="3" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left" Content="Font Size:"/>
+                                <Slider x:Name="Slider_Font_Size" Grid.Row="3" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Stretch" ValueChanged="Slider_Font_Size_ValueChanged_AT" Maximum="200" SmallChange="1" SelectionEnd="-1" LargeChange="10" Minimum="1"/>
+                                <TextBox x:Name="TextBox_Font_Size" Grid.Row="3" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Size,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
-                                <Label x:Name="Label_Font_Green" Grid.Row="5" Grid.Column="0" Content="Red:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <Slider x:Name="Slider_Font_Green" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Green_ValueChanged_AT" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
-                                <TextBox x:Name="TextBox_Font_Green" Grid.Row="5" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Green,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <Label x:Name="Label_Font_Color" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Color" HorizontalContentAlignment="Center"/>
+                                <Label x:Name="Label_Font_Red" Grid.Row="5" Grid.Column="0" Content="Red:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <Slider x:Name="Slider_Font_Red" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Red_ValueChanged_AT" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                                <TextBox x:Name="TextBox_Font_Red" Grid.Row="5" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Red,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
-                                <Label x:Name="Label_Font_Blue" Grid.Row="6" Grid.Column="0" Content="Blue:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <Slider x:Name="Slider_Font_Blue" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Blue_ValueChanged_AT" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
-                                <TextBox x:Name="TextBox_Font_Blue" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Blue,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <Label x:Name="Label_Font_Green" Grid.Row="6" Grid.Column="0" Content="Red:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <Slider x:Name="Slider_Font_Green" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Green_ValueChanged_AT" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                                <TextBox x:Name="TextBox_Font_Green" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Green,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+
+                                <Label x:Name="Label_Font_Blue" Grid.Row="7" Grid.Column="0" Content="Blue:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <Slider x:Name="Slider_Font_Blue" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Blue_ValueChanged_AT" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                                <TextBox x:Name="TextBox_Font_Blue" Grid.Row="7" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Blue,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                             </Grid>
                         </TabItem>
                         <TabItem x:Name="TabItem_Fonts_AD" Header="Date Font">

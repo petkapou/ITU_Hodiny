@@ -211,15 +211,14 @@ namespace Hodiny
                 case 0:
                     Grid_AnalogClock.Visibility = Visibility.Visible;
                     Grid_DigitalClock.Visibility = Visibility.Hidden;
-                    /*if (CheckBox_Font.IsChecked == false) // bude chtit pripojit na jiny checkbox
+                    if (CheckBox_AT.IsChecked == false)
                     {
                         this.HideAnalogClockFont();
                     }
                     else
                     {
                         this.ShowAnalogClockFont();
-                    }*/
-                    this.ShowAnalogClockFont();
+                    }
                     TabItem_Fonts_Analog.IsEnabled = true;
                     TabItem_Fonts_Analog.Visibility = Visibility.Visible;
                     TabItem_Fonts_Analog.MaxWidth = 10000;
@@ -554,26 +553,14 @@ namespace Hodiny
             Digital_Time.Foreground = new SolidColorBrush(color);
         }
 
-        private void CheckBox_Font_Checked(object sender, RoutedEventArgs e)
+        private void CheckBox_AT_Checked(object sender, RoutedEventArgs e)
         {
-            if (TabItem_Fonts_AT != null)
-            {
-                TabItem_Fonts_AT.Visibility = Visibility.Visible;
-                TabItem_Fonts_AT.IsEnabled = true;
-                TabItem_Fonts_AT.MaxWidth = 10000;
-                this.ShowAnalogClockFont();
-            }
+            this.ShowAnalogClockFont();
         }
 
-        private void CheckBox_Font_Unchecked(object sender, RoutedEventArgs e)
+        private void CheckBox_AT_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (TabItem_Fonts_AT != null)
-            {
-                TabItem_Fonts_AT.Visibility = Visibility.Hidden;
-                TabItem_Fonts_AT.IsEnabled = false;
-                TabItem_Fonts_AT.MaxWidth = 0;
-                this.HideAnalogClockFont();
-            }
+            this.HideAnalogClockFont();
         }
 
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
@@ -642,7 +629,10 @@ namespace Hodiny
         {
             foreach (TextBlock element in hourTextArray)
             {
-                element.Visibility = Visibility.Hidden;
+                if (element != null)
+                {
+                    element.Visibility = Visibility.Hidden;
+                }
             }
         }
 
@@ -650,7 +640,10 @@ namespace Hodiny
         {
             foreach (TextBlock element in hourTextArray)
             {
-                element.Visibility = Visibility.Visible;
+                if (element != null)
+                {
+                    element.Visibility = Visibility.Visible;
+                }
             }
         }
 
