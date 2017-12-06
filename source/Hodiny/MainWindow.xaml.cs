@@ -106,6 +106,13 @@ namespace Hodiny
             Slider_Font_Size_AD.Value = 15;
 
             fontColorDD.A = 255;
+            Slider_Font_Red_DD.Value = fontColorDD.R = 255;
+            Slider_Font_Green_DD.Value = fontColorDD.G = 255;
+            Slider_Font_Blue_DD.Value = fontColorDD.B = 255;
+            Digital_Date.FontSize = 15;
+            Slider_Font_Size_DD.Value = 15;
+
+            fontColorDD.A = 255;
             Slider_Font_Red.Value = fontColorDD.R = 255;
             Slider_Font_Green.Value = fontColorDD.G = 255;
             Slider_Font_Blue.Value = fontColorDD.B = 255;
@@ -162,17 +169,20 @@ namespace Hodiny
             {
                 comboBoxFonts.Items.Add(fontFamily.Source);
             }
-
             foreach (FontFamily fontFamily in Fonts.SystemFontFamilies)
             {
                 ComobBox_Fonts_DT.Items.Add(fontFamily.Source);
             }
-
             foreach (FontFamily fontFamily in Fonts.SystemFontFamilies)
             {
                 ComobBox_Fonts_AD.Items.Add(fontFamily.Source);
             }
+            foreach (FontFamily fontFamily in Fonts.SystemFontFamilies)
+            {
+                ComobBox_Fonts_DD.Items.Add(fontFamily.Source);
+            }
 
+            ComobBox_Fonts_DD.SelectedIndex = 0;
             ComobBox_Fonts_AD.SelectedIndex = 0;
             ComobBox_Fonts_DT.SelectedIndex = 0;
             comboBoxFonts.SelectedIndex = 0;
@@ -654,6 +664,92 @@ namespace Hodiny
         {
             Digital_Time.Foreground = new SolidColorBrush(color);
         }
+        
+        // DIGITAL DATE FONTS
+
+        private void CheckBox_DD_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Digital_Date != null)
+            {
+                Digital_Date.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void CheckBox_DD_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Digital_Date != null)
+            {
+                Digital_Date.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void CheckBox_Italic_Checked_DD(object sender, RoutedEventArgs e)
+        {
+            Digital_Date.FontStyle = FontStyles.Italic;
+        }
+
+        private void CheckBox_Bold_Checked_DD(object sender, RoutedEventArgs e)
+        {
+            Digital_Date.FontWeight = FontWeights.Bold;
+        }
+
+        private void CheckBox_Italic_Unchecked_DD(object sender, RoutedEventArgs e)
+        {
+            Digital_Date.FontStyle = FontStyles.Normal;
+        }
+
+        private void CheckBox_Bold_Unchecked_DD(object sender, RoutedEventArgs e)
+        {
+            Digital_Date.FontWeight = FontWeights.Normal;
+        }
+
+        private void ComboBox_SelectionChanged_DD(object sender, SelectionChangedEventArgs e)
+        {
+            Digital_Date.FontFamily = new FontFamily(ComobBox_Fonts_DD.Text);
+        }
+
+        private void Slider_Font_Size_ValueChanged_DD(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider_Font_Size_DD.Value = Math.Round(Slider_Font_Size_DD.Value);
+            if (this.IsLoaded)
+            {
+                Digital_Date.FontSize = Math.Round(Slider_Font_Size_DD.Value);
+            }
+        }
+
+        private void Slider_Font_Red_ValueChanged_DD(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider_Font_Red_DD.Value = Math.Round(Slider_Font_Red_DD.Value);
+            fontColorDD.R = Convert.ToByte(Math.Round(Slider_Font_Red_DD.Value));
+            SetFontColor_DD();
+        }
+
+        private void Slider_Font_Green_ValueChanged_DD(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider_Font_Green_DD.Value = Math.Round(Slider_Font_Green_DD.Value);
+            fontColorDD.G = Convert.ToByte(Math.Round(Slider_Font_Green_DD.Value));
+            TextBox_Font_Green_DD.Text = Math.Round(Slider_Font_Green_DD.Value).ToString();
+            SetFontColor_DD();
+        }
+
+        private void Slider_Font_Blue_ValueChanged_DD(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider_Font_Blue_DD.Value = Math.Round(Slider_Font_Blue_DD.Value);
+            fontColorDD.B = Convert.ToByte(Math.Round(Slider_Font_Blue_DD.Value));
+            SetFontColor_DD();
+        }
+
+        private void SetFontColor_DD()
+        {
+            this.SetFontColor_DD(fontColorDD);
+        }
+
+        public void SetFontColor_DD(Color color)
+        {
+            Digital_Date.Foreground = new SolidColorBrush(color);
+        }
+
+        // END FONTS
 
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
         {

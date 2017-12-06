@@ -306,7 +306,7 @@
                                 <Slider x:Name="Slider_Font_Size_AD" Grid.Row="3" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Stretch" ValueChanged="Slider_Font_Size_ValueChanged_AD" Maximum="200" SmallChange="1" SelectionEnd="-1" LargeChange="10" Minimum="1"/>
                                 <TextBox x:Name="TextBox_Font_Size_AD" Grid.Row="3" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Size_AD,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
-                                <Label x:Name="Label_Font_Colo_ADr" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Color" HorizontalContentAlignment="Center"/>
+                                <Label x:Name="Label_Font_Color_AD" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Color" HorizontalContentAlignment="Center"/>
                                 <Label x:Name="Label_Font_Red_AD" Grid.Row="5" Grid.Column="0" Content="Red:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 <Slider x:Name="Slider_Font_Red_AD" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Red_ValueChanged_AD" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
                                 <TextBox x:Name="TextBox_Font_Red_AD" Grid.Row="5" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Red_AD,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
@@ -317,7 +317,7 @@
 
                                 <Label x:Name="Label_Font_Blue_AD" Grid.Row="7" Grid.Column="0" Content="Blue:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 <Slider x:Name="Slider_Font_Blue_AD" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Blue_ValueChanged_AD" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
-                                <TextBox x:Name="TextBox_Font_Blue_AD" Grid.Row="7" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Blue,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="TextBox_Font_Blue_AD" Grid.Row="7" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Blue_AD,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                             </Grid>
                         </TabItem>
                     </TabControl>
@@ -386,7 +386,32 @@
                                     <RowDefinition Height="1*"/>
                                     <RowDefinition Height="1*"/>
                                     <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
                                 </Grid.RowDefinitions>
+                                <CheckBox x:Name="CheckBox_DD" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Show Date" Checked="CheckBox_DD_Checked" Unchecked="CheckBox_DD_Unchecked" IsChecked="True" Grid.ColumnSpan="5"/>
+
+                                <CheckBox x:Name="CheckBox_Italic_DD" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Italic" Checked="CheckBox_Italic_Checked_DD" Unchecked="CheckBox_Italic_Unchecked_DD"/>
+                                <CheckBox x:Name="CheckBox_Bold_DD" Grid.Row="1" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Left" Content="Bold" Checked="CheckBox_Bold_Checked_DD" Unchecked="CheckBox_Bold_Unchecked_DD"/>
+
+                                <Label x:Name="Label_Font_DD" Content="Font:" Grid.Row="2" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                <ComboBox x:Name="ComobBox_Fonts_DD" Grid.Row="2" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="26" SelectionChanged="ComboBox_SelectionChanged_DD"/>
+
+                                <Label x:Name="Label_Font_Size_DD" Grid.Row="3" Grid.Column="0"  VerticalAlignment="Center" HorizontalAlignment="Left" Content="Font Size:"/>
+                                <Slider x:Name="Slider_Font_Size_DD" Grid.Row="3" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Stretch" ValueChanged="Slider_Font_Size_ValueChanged_DD" Maximum="200" SmallChange="1" SelectionEnd="-1" LargeChange="10" Minimum="1"/>
+                                <TextBox x:Name="TextBox_Font_Size_DD" Grid.Row="3" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Size_DD,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+
+                                <Label x:Name="Label_Font_Color_DD" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Color" HorizontalContentAlignment="Center"/>
+                                <Label x:Name="Label_Font_Red_DD" Grid.Row="5" Grid.Column="0" Content="Red:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <Slider x:Name="Slider_Font_Red_DD" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Red_ValueChanged_DD" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                                <TextBox x:Name="TextBox_Font_Red_DD" Grid.Row="5" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Red_DD,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+
+                                <Label x:Name="Label_Font_Green_DD" Grid.Row="6" Grid.Column="0" Content="Red:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <Slider x:Name="Slider_Font_Green_DD" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Green_ValueChanged_DD" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                                <TextBox x:Name="TextBox_Font_Green_DD" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Green_DD,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+
+                                <Label x:Name="Label_Font_Blue_DD" Grid.Row="7" Grid.Column="0" Content="Blue:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <Slider x:Name="Slider_Font_Blue_DD" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Font_Blue_ValueChanged_DD" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                                <TextBox x:Name="TextBox_Font_Blue_DD" Grid.Row="7" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Font_Blue_DD,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                             </Grid>
                         </TabItem>
                     </TabControl>
