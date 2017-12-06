@@ -211,19 +211,21 @@ namespace Hodiny
                 case 0:
                     Grid_AnalogClock.Visibility = Visibility.Visible;
                     Grid_DigitalClock.Visibility = Visibility.Hidden;
-                    CheckBox_Font.Visibility = Visibility.Visible;
-                    if (CheckBox_Font.IsChecked == false) {
-                        TabItem_Fonts_AT.Visibility = Visibility.Hidden;
-                        TabItem_Fonts_AT.MaxWidth = 0;
+                    /*if (CheckBox_Font.IsChecked == false) // bude chtit pripojit na jiny checkbox
+                    {
                         this.HideAnalogClockFont();
                     }
-                    else {
-                        TabItem_Fonts_AT.Visibility = Visibility.Visible;
-                        TabItem_Fonts_AT.MaxWidth = 10000;
+                    else
+                    {
                         this.ShowAnalogClockFont();
-                    }
-                    TabItem_Fonts_DT.Visibility = Visibility.Hidden;
-                    TabItem_Fonts_DT.MaxWidth = 0;
+                    }*/
+                    this.ShowAnalogClockFont();
+                    TabItem_Fonts_Analog.IsEnabled = true;
+                    TabItem_Fonts_Analog.Visibility = Visibility.Visible;
+                    TabItem_Fonts_Analog.MaxWidth = 10000;
+                    TabItem_Fonts_Digital.IsEnabled = false;
+                    TabItem_Fonts_Digital.Visibility = Visibility.Hidden;
+                    TabItem_Fonts_Digital.MaxWidth = 0;
                     TabItem_AnalogClock.IsEnabled = true;
                     TabItem_AnalogClock.Visibility = Visibility.Visible;
                     TabItem_AnalogClock.MaxWidth = 10000;
@@ -235,7 +237,6 @@ namespace Hodiny
                 case 1:
                     Grid_AnalogClock.Visibility = Visibility.Hidden;
                     Grid_DigitalClock.Visibility = Visibility.Visible;
-                    CheckBox_Font.Visibility = Visibility.Hidden;
                     this.HideAnalogClockFont();
                     TabItem_DigitalClock.IsEnabled = true;
                     TabItem_DigitalClock.Visibility = Visibility.Visible;
@@ -243,11 +244,13 @@ namespace Hodiny
                     TabItem_AnalogClock.IsEnabled = false;
                     TabItem_AnalogClock.Visibility = Visibility.Hidden;
                     TabItem_AnalogClock.MaxWidth = 0;
-                    TabItem_Fonts_AT.Visibility = Visibility.Hidden;
-                    TabItem_Fonts_AT.MaxWidth = 0;
+                    TabItem_Fonts_Digital.IsEnabled = true;
+                    TabItem_Fonts_Digital.Visibility = Visibility.Visible;
+                    TabItem_Fonts_Digital.MaxWidth = 10000;
+                    TabItem_Fonts_Analog.IsEnabled = false;
+                    TabItem_Fonts_Analog.Visibility = Visibility.Hidden;
+                    TabItem_Fonts_Analog.MaxWidth = 0;
                     this.HideAnalogClockFont();
-                    TabItem_Fonts_DT.Visibility = Visibility.Visible;
-                    TabItem_Fonts_DT.MaxWidth = 10000;
                     break;
 
                 default:
