@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.IO;
 
 namespace Hodiny
 {
@@ -37,6 +38,8 @@ namespace Hodiny
         private double minuteLenght = 0.3;
         private double secondLenght = 0.4;
 
+        private List<String> locales = new List<String>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -57,26 +60,13 @@ namespace Hodiny
 
             InitializeAnalogClockTextBlockArray();
 
-            Slider_Transparency.Value = 1;
+            AddLanguages();
 
-            ComboBox_Style.Items.Add("Analog");
-            ComboBox_Style.Items.Add("Digital");
-            ComboBox_Style.SelectedIndex = 0;
-
-            ComboBox_Lang.Items.Add("English (EN)");
-            ComboBox_Lang.Items.Add("Czech (CZ)");
-            ComboBox_Lang.Items.Add("Slovak (SK)");
+            Slider_Transparency.Value = 1;            
+            ComboBox_Style.SelectedIndex = 0;            
             ComboBox_Lang.SelectedIndex = 0;
-
-            ComboBox_Bg_Type.Items.Add("Color");
-            ComboBox_Bg_Type.Items.Add("Image");
-            ComboBox_Bg_Type.SelectedIndex = 0;
-
-            ComboBox_Hand.Items.Add("Hour");
-            ComboBox_Hand.Items.Add("Minute");
-            ComboBox_Hand.Items.Add("Second");
+            ComboBox_Bg_Type.SelectedIndex = 0;            
             ComboBox_Hand.SelectedIndex = 0;
-
             Slider_Lenght.Value = 0.8;
 
             bgColor.A = 255;
@@ -120,6 +110,26 @@ namespace Hodiny
             CalculateTimeDatePosition();
 
             FillFontComboBox(ComobBox_Fonts);
+        }
+
+        void AddLanguages()
+        {
+            String directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            directory = System.IO.Path.Combine(directory, "Localization");
+            DirectoryInfo d = new DirectoryInfo(directory);
+            String filepath;
+            foreach (var file in d.GetFiles("*.xaml"))
+            {
+                filepath = System.IO.Path.Combine(directory, file.Name);
+                var languageDictionary = new ResourceDictionary();
+                languageDictionary.Source = new Uri(filepath);
+                if (languageDictionary.Contains("LanguageName") && languageDictionary.Contains("ResourceDictionaryName"))
+                {
+                    ComboBox_Lang.Items.Add(languageDictionary["LanguageName"].ToString());
+                    locales.Add(languageDictionary["ResourceDictionaryName"].ToString().Replace("Loc-", ""));
+                }
+
+            }
         }
 
         void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -251,17 +261,7 @@ namespace Hodiny
         
         private void ComboBox_Lang_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch (ComboBox_Lang.SelectedIndex)
-            {
-                case 0:
-                    break;
-                case 1:
-                    break;
-                case 2:
-                    break;
-                default:
-                    break;
-            }
+            App.Instance.SwitchLanguage(locales[ComboBox_Lang.SelectedIndex]);
         }
 
         private void ComboBox_Style_SelectionChanged(object sender, SelectionChangedEventArgs e)

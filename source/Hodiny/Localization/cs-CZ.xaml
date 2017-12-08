@@ -1,0 +1,44 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- The name of this ResourceDictionary. Should not be localized. -->
+    <!-- DO NOT LOCALIZE -->
+    <sys:String x:Key="ResourceDictionaryName">Loc-cs-CZ</sys:String>
+    
+    <!-- Language name as seen in ComboBox_Lang-->
+    <sys:String x:Key="LanguageName">Čeština</sys:String>
+
+    <!-- Localized strings -->
+    <sys:String x:Key="Language">Jazyk:</sys:String>
+    <sys:String x:Key="Type">Typ:</sys:String>
+    <sys:String x:Key="Done">Hotovo</sys:String>
+    <sys:String x:Key="Transparency">Priesvitnosť:</sys:String>
+    <sys:String x:Key="Color">Farba</sys:String>
+    <sys:String x:Key="Red">Červená:</sys:String>
+    <sys:String x:Key="Green">Zelená:</sys:String>
+    <sys:String x:Key="Blue">Modrá:</sys:String>
+    <sys:String x:Key="ChooseFile">Vybrať Súbor</sys:String>
+    <sys:String x:Key="Lenght">Vzdialenosť:</sys:String>
+    <sys:String x:Key="Hand">Ručička:</sys:String>
+    <sys:String x:Key="HandLenght">Dĺžka Ručičky:</sys:String>
+    <sys:String x:Key="ShowHourNumbers">Ukazovať Čísla Hodín</sys:String>
+    <sys:String x:Key="ShowDate">Ukazovať dátum</sys:String>
+    <sys:String x:Key="ShowSeconds">Ukazovať sekundy</sys:String>
+    <sys:String x:Key="Italic">Italika</sys:String>
+    <sys:String x:Key="Bold">Hrubé</sys:String>
+    <sys:String x:Key="Font">Font:</sys:String>
+    <sys:String x:Key="FontSize">Veľkosť Fontu:</sys:String>
+    <sys:String x:Key="Common">Spoločné</sys:String>
+    <sys:String x:Key="Background">Pozadie</sys:String>
+    <sys:String x:Key="AnalogClock">Analógové Hodiny</sys:String>
+    <sys:String x:Key="DigitalClock">Digitálne Hodiny</sys:String>
+    <sys:String x:Key="Fonts">Fonty</sys:String>
+    <sys:String x:Key="TimeFont">Font Času</sys:String>
+    <sys:String x:Key="DateFont">Font Dátumu</sys:String>
+    <sys:String x:Key="Hour">Hodinová</sys:String>
+    <sys:String x:Key="Minute">Minutová</sys:String>
+    <sys:String x:Key="Second">Sekundová</sys:String>
+    <sys:String x:Key="Image">Obrázok</sys:String>
+    <sys:String x:Key="Style">Štýl:</sys:String>
+</ResourceDictionary>
