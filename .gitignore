@@ -1,3 +1,11 @@
+.*
+!.gitignore
+
 # VisualStudio build files
 /final_prototype/Hodiny/bin/
 /final_prototype/Hodiny/obj/
+/final_prototype/.vs/
+
+/source/Hodiny/bin/
+/source/Hodiny/obj/
+/source/.vs/
