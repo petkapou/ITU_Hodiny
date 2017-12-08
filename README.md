@@ -20,5 +20,6 @@ Jen mé nápady, prosím, vyjádřete se k tomu. Potřeboval jsem to někam naps
 * Typ prvku ve kterém se vybírá jazyk nebo název typu fontu(*Arial*) při malém okně roztáhne celé nastavení, omezit šířku.
 * Přidat ovládání pro posun *label*u s datem(oba typy hodin) nebo časem(pouze digitální hodiny) vertikálně a horizontálně. (Asi by to patřilo do záložky *Digital/Analog Clock*? Realizovat pomocí 4 tlačítek *Up/Down/Left/Right* a nastavovat margin *label*u?)
 * Omezit minimální velikost okna aplikace(zamezíme nechráněný stav, kdy je to moc malé a vše se rozhází, což nevypadá dobře), najít co nejmenší fungující velikost.
-* Formátování času digitálek se zobrazí pokud jsou číslice menší než 10 jako **14:2:3**, tedy chybí nuly **14:02:03**.
+* ~~Formátování času digitálek se zobrazí pokud jsou číslice menší než 10 jako **14:2:3**, tedy chybí nuly **14:02:03**.~~ **Hotovo**
+* ~~Vypnutí zobrazení vteřin u digitálních hodin.~~ **Hotovo**
 * Formátování data se zobrazí jako **2.24.2017**, chceme prohodit měsíc a den nebo nechat to nastavit uživatele? Třeba **24/2/2017** je taky možnost, případně odebrat rok **24/2**, **24.2.**.

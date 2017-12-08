@@ -223,6 +223,7 @@
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
+                        <CheckBox x:Name="CheckBox_Show_Sec" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Show Seconds" Checked="Show_Sec_Actualize" Unchecked="Show_Sec_Actualize" IsChecked="True" Grid.ColumnSpan="5"/>
                     </Grid>
                 </TabItem>
                 <!-- ANALOG TIME FONTS -->

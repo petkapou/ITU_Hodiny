@@ -159,10 +159,52 @@ namespace Hodiny
                 Analog_Date.Content = DateTime.Now.Date;
                 Digital_Date.Content = DateTime.Now.Date;
                 //Digital_Time.Content = DateTime.Now.TimeOfDay; // Tiskne setiny, fakt hnus
-                Digital_Time.Content = DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
+                string tmp_time = DateTime.Now.Hour + ":";
+                if (DateTime.Now.Minute < 10)
+                {
+                    tmp_time += "0";
+                }
+                tmp_time += DateTime.Now.Minute;
+                if (CheckBox_Show_Sec.IsChecked == true)
+                {
+                    tmp_time += ":";
+                    if (DateTime.Now.Second < 10)
+                    {
+                        tmp_time += "0";
+                    }
+                    tmp_time += DateTime.Now.Second;
+                    //Digital_Time.Content = DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
+                }
+                Digital_Time.Content = tmp_time;
             }
             ));
         }
+
+        private void Show_Sec_Actualize(object sender, RoutedEventArgs e)
+        {
+            if (Digital_Time == null)
+            {
+                return;
+            }
+            string tmp_time = DateTime.Now.Hour + ":";
+            if (DateTime.Now.Minute < 10)
+            {
+                tmp_time += "0";
+            }
+            tmp_time += DateTime.Now.Minute;
+            if (CheckBox_Show_Sec.IsChecked == true)
+            {
+                tmp_time += ":";
+                if (DateTime.Now.Second < 10)
+                {
+                    tmp_time += "0";
+                }
+                tmp_time += DateTime.Now.Second;
+                //Digital_Time.Content = DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
+            }
+            Digital_Time.Content = tmp_time;
+        }
+
         private void FillFontComboBox(ComboBox comboBoxFonts)
         {
             foreach (FontFamily fontFamily in Fonts.SystemFontFamilies)
