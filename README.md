@@ -1,6 +1,6 @@
 # ITU_Hodiny
 
-####Zadání:
+#### Zadání:
 Vytvořte hodiny, které by umožňovaly zobrazení
 data a času nadevšemi okny. Hodiny by měly
 podporovat různé vzhledy (digitální, analogové),
@@ -11,14 +11,14 @@ parametrů. Zaměřte se na intuitivnost a efektivnost
 přístupu k různým funkcím programu - aplikace
 filtrů, apod.
 
-======
+***
 
-####TODO
+#### TODO
 Jen mé nápady, prosím, vyjádřete se k tomu. Potřeboval jsem to někam napsat, abych nezapomenul, co mě napadlo.
 * Překlad
 * Digitální hodiny můžou mít pozadí s tvarem obdélníku (šířka != výška).
 * Typ prvku ve kterém se vybírá jazyk nebo název typu fontu(*Arial*) při malém okně roztáhne celé nastavení, omezit šířku.
-* Přidat ovládání pro posun labelu s datem(oba typy hodin) nebo časem(pouze digitální hodiny) vertikálně a horizontálně. (Asi by to patřilo do záložky Digital/Analog Clock? Realizovat pomocí 4 tlačítek Up/Down/Left/Right a nastavovat margin *label*u?)
+* Přidat ovládání pro posun *label*u s datem(oba typy hodin) nebo časem(pouze digitální hodiny) vertikálně a horizontálně. (Asi by to patřilo do záložky *Digital/Analog Clock*? Realizovat pomocí 4 tlačítek *Up/Down/Left/Right* a nastavovat margin *label*u?)
 * Omezit minimální velikost okna aplikace(zamezíme nechráněný stav, kdy je to moc malé a vše se rozhází, což nevypadá dobře), najít co nejmenší fungující velikost.
 * Formátování času digitálek se zobrazí pokud jsou číslice menší než 10 jako **14:2:3**, tedy chybí nuly **14:02:03**.
 * Formátování data se zobrazí jako **2.24.2017**, chceme prohodit měsíc a den nebo nechat to nastavit uživatele? Třeba **24/2/2017** je taky možnost, případně odebrat rok **24/2**, **24.2.**.
