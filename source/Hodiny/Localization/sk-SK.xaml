@@ -25,7 +25,7 @@
     <sys:String x:Key="ShowHourNumbers">Ukazovať Čísla Hodín</sys:String>
     <sys:String x:Key="ShowDate">Ukazovať dátum</sys:String>
     <sys:String x:Key="ShowSeconds">Ukazovať sekundy</sys:String>
-    <sys:String x:Key="Italic">Italika</sys:String>
+    <sys:String x:Key="Italic">Kurzíva</sys:String>
     <sys:String x:Key="Bold">Hrubé</sys:String>
     <sys:String x:Key="Font">Font:</sys:String>
     <sys:String x:Key="FontSize">Veľkosť Fontu:</sys:String>
@@ -41,4 +41,5 @@
     <sys:String x:Key="Second">Sekundová</sys:String>
     <sys:String x:Key="Image">Obrázok</sys:String>
     <sys:String x:Key="Style">Štýl:</sys:String>
+    <sys:String x:Key="SunClock">Slnečné Hodiny</sys:String>
 </ResourceDictionary>

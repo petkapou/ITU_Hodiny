@@ -15,7 +15,7 @@
         Background="{x:Null}" Grid.IsSharedSizeScope="True" 
         Topmost="True" 
         MouseRightButtonDown="Window_MouseRightButtonDown" 
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded" MinWidth="290" MinHeight="290">
 
     <Window.Resources>
         <Storyboard x:Key="ShowMenu" >
@@ -117,8 +117,9 @@
 
                         <Label Content="{DynamicResource ResourceKey=Type}" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                         <ComboBox x:Name="ComboBox_Style" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectionChanged="ComboBox_Style_SelectionChanged" SelectedIndex="-1">
-                            <ComboBoxItem Content="{DynamicResource ResourceKey=AnalogClock}"></ComboBoxItem >
-                            <ComboBoxItem Content="{DynamicResource ResourceKey=DigitalClock}"></ComboBoxItem >
+                            <ComboBoxItem Content="{DynamicResource ResourceKey=AnalogClock}"></ComboBoxItem>
+                            <ComboBoxItem Content="{DynamicResource ResourceKey=DigitalClock}"></ComboBoxItem>
+                            <ComboBoxItem Content="{DynamicResource ResourceKey=SunClock}"></ComboBoxItem>
                         </ComboBox>
                     </Grid>
                 </TabItem>
@@ -126,9 +127,9 @@
                 <TabItem Header="{DynamicResource ResourceKey=Background}">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1.7*"/>
+                            <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="0.1*"/>
-                            <ColumnDefinition Width="3.5*"/>
+                            <ColumnDefinition Width="4*"/>
                             <ColumnDefinition Width="0.2*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
@@ -151,22 +152,20 @@
                             <ComboBoxItem Content="{DynamicResource ResourceKey=Color}"></ComboBoxItem >
                             <ComboBoxItem Content="{DynamicResource ResourceKey=Image}"></ComboBoxItem >
                         </ComboBox>
-                        <Label x:Name="Label_Color" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" Content="{DynamicResource ResourceKey=Color}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <Label x:Name="Label_Red" Grid.Row="3" Grid.Column="0" Content="{DynamicResource ResourceKey=Red}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="Slider_Red" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Red_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
-                        <TextBox x:Name="TextBox_Red" Grid.Row="3" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Red,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Label x:Name="Label_Red" Grid.Row="2" Grid.Column="0" Content="{DynamicResource ResourceKey=Red}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <Slider x:Name="Slider_Red" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Red_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                        <TextBox x:Name="TextBox_Red" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Red,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
-                        <Label x:Name="Label_Green" Grid.Row="4" Grid.Column="0" Content="{DynamicResource ResourceKey=Green}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="Slider_Green" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Green_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
-                        <TextBox x:Name="TextBox_Green" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Green,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Label x:Name="Label_Green" Grid.Row="3" Grid.Column="0" Content="{DynamicResource ResourceKey=Green}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <Slider x:Name="Slider_Green" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Green_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                        <TextBox x:Name="TextBox_Green" Grid.Row="3" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Green,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
-                        <Label x:Name="Label_Blue" Grid.Row="5" Grid.Column="0" Content="{DynamicResource ResourceKey=Blue}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        <Slider x:Name="Slider_Blue" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Blue_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
-                        <TextBox x:Name="TextBox_Blue" Grid.Row="5" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Blue,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Label x:Name="Label_Blue" Grid.Row="4" Grid.Column="0" Content="{DynamicResource ResourceKey=Blue}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <Slider x:Name="Slider_Blue" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Blue_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                        <TextBox x:Name="TextBox_Blue" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Blue,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
-                        <Label x:Name="Label_Image" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" Content="{DynamicResource ResourceKey=Image}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <TextBox x:Name="TextBox_File" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Height="23" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Disabled" MaxLines="1"/>
-                        <Button x:Name="Button_File" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1" Content="{DynamicResource ResourceKey=ChooseFile}" HorizontalAlignment="Right" VerticalAlignment="Center" Height="23" Click="Button_File_Click"/>
+                        <TextBox x:Name="TextBox_File" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" Height="23" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Disabled" MaxLines="1"/>
+                        <Button x:Name="Button_File" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" Content="{DynamicResource ResourceKey=ChooseFile}" HorizontalAlignment="Right" VerticalAlignment="Center" Height="23" Click="Button_File_Click"/>
                     </Grid>
                 </TabItem>
 
@@ -318,7 +317,7 @@
                     </TabControl>
                 </TabItem>
                 <!-- Style="{StaticResource ItemExitStyle}" -->
-                <TabItem x:Name="TabItem_Exit"  Style="{StaticResource ItemExitStyle}" Content="Clossing application...">
+                <TabItem x:Name="TabItem_Exit"  Style="{StaticResource ItemExitStyle}" Content="Closing application...">
                     <TabItem.Header>
                         <Label Content="X"
                                Foreground="White"

@@ -235,9 +235,6 @@ namespace Hodiny
             switch (ComboBox_Bg_Type.SelectedIndex)
             {
                 case 0:
-                    Label_Color.IsEnabled = true;
-                    Label_Color.Visibility = Visibility.Visible;
-
                     Label_Red.IsEnabled = true;
                     Label_Red.Visibility = Visibility.Visible;
                     Slider_Red.IsEnabled = true;
@@ -259,8 +256,6 @@ namespace Hodiny
                     TextBox_Blue.IsEnabled = true;
                     TextBox_Blue.Visibility = Visibility.Visible;
 
-                    Label_Image.IsEnabled = false;
-                    Label_Image.Visibility = Visibility.Hidden;
                     TextBox_File.IsEnabled = false;
                     TextBox_File.Visibility = Visibility.Hidden;
                     Button_File.IsEnabled = false;
@@ -268,9 +263,6 @@ namespace Hodiny
                     break;
 
                 case 1:
-                    Label_Color.IsEnabled = false;
-                    Label_Color.Visibility = Visibility.Hidden;
-
                     Label_Red.IsEnabled = false;
                     Label_Red.Visibility = Visibility.Hidden;
                     Slider_Red.IsEnabled = false;
@@ -291,9 +283,7 @@ namespace Hodiny
                     Slider_Blue.Visibility = Visibility.Hidden;
                     TextBox_Blue.IsEnabled = false;
                     TextBox_Blue.Visibility = Visibility.Hidden;
-
-                    Label_Image.IsEnabled = true;
-                    Label_Image.Visibility = Visibility.Visible;
+                    
                     TextBox_File.IsEnabled = true;
                     TextBox_File.Visibility = Visibility.Visible;
                     Button_File.IsEnabled = true;
