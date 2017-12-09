@@ -60,6 +60,9 @@
     <Compile Include="Types\Digital.xaml.cs">
       <DependentUpon>Digital.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Types\Sun.xaml.cs">
+      <DependentUpon>Sun.xaml</DependentUpon>
+    </Compile>
     <Content Include="Localization\en-US.xaml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -89,6 +92,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Types\Digital.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Types\Sun.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

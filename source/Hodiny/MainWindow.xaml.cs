@@ -34,11 +34,12 @@ namespace Hodiny
 
             clockObjects.Add(new Analog(bgColor, locales, setClock));
             clockObjects.Add(new Digital(bgColor, locales, setClock));
+            clockObjects.Add(new Sun(bgColor, locales, setClock));
 
             bgColor = Color.FromArgb(255, 255, 255, 255);
 
             this.Hide();
-            setClock(ClockTypes.Analog);
+            setClock(ClockTypes.Sun);
         }
 
         public void setClock(ClockTypes type)
