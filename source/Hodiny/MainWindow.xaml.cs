@@ -47,6 +47,8 @@ namespace Hodiny
             //App.Current.MainWindow = clockObjects[(int)type];
             //App.Current.MainWindow.Show();
             clockObjects[(int)previous].Hide();
+            clockObjects[(int)type].Top = clockObjects[(int)previous].Top;
+            clockObjects[(int)type].Left = clockObjects[(int)previous].Left;
             clockObjects[(int)type].Show();
             previous = type;
         }
