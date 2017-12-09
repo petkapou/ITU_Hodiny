@@ -39,9 +39,6 @@ namespace Hodiny
         public Analog(Color bgColor, List<String> locale, Action<ClockTypes> callback)
         {
             InitializeComponent();
-            //DateTime date = DateTime.Now;
-            //TimeZone time = TimeZone.CurrentTimeZone;
-            //TimeSpan difference = time.GetUtcOffset(date);
 
             fontColorDate = Color.FromArgb(255, 255, 255, 255);
             fontColorTime = Color.FromArgb(255, 0, 0, 0);
@@ -174,48 +171,10 @@ namespace Hodiny
             {
                 case 0:
                     mCallback(ClockTypes.Analog);
-                    //Grid_AnalogClock.Visibility = Visibility.Visible;
-                    //Grid_DigitalClock.Visibility = Visibility.Hidden;
-                    //if (CheckBox_AT.IsChecked == false)
-                    //{
-                    //    this.HideAnalogClockFont();
-                    //}
-                    //else
-                    //{
-                    //    this.ShowAnalogClockFont();
-                    //}
-                    //TabItem_Fonts_Analog.IsEnabled = true;
-                    //TabItem_Fonts_Analog.Visibility = Visibility.Visible;
-                    //TabItem_Fonts_Analog.MaxWidth = 10000;
-                    //TabItem_Fonts_Digital.IsEnabled = false;
-                    //TabItem_Fonts_Digital.Visibility = Visibility.Hidden;
-                    //TabItem_Fonts_Digital.MaxWidth = 0;
-                    //TabItem_AnalogClock.IsEnabled = true;
-                    //TabItem_AnalogClock.Visibility = Visibility.Visible;
-                    //TabItem_AnalogClock.MaxWidth = 10000;
-                    //TabItem_DigitalClock.IsEnabled = false;
-                    //TabItem_DigitalClock.Visibility = Visibility.Hidden;
-                    //TabItem_DigitalClock.MaxWidth = 0;
                     break;
 
                 case 1:
                     mCallback(ClockTypes.Digital);
-                    //Grid_AnalogClock.Visibility = Visibility.Hidden;
-                    //Grid_DigitalClock.Visibility = Visibility.Visible;
-                    //this.HideAnalogClockFont();
-                    //TabItem_DigitalClock.IsEnabled = true;
-                    //TabItem_DigitalClock.Visibility = Visibility.Visible;
-                    //TabItem_DigitalClock.MaxWidth = 10000;
-                    //TabItem_AnalogClock.IsEnabled = false;
-                    //TabItem_AnalogClock.Visibility = Visibility.Hidden;
-                    //TabItem_AnalogClock.MaxWidth = 0;
-                    //TabItem_Fonts_Digital.IsEnabled = true;
-                    //TabItem_Fonts_Digital.Visibility = Visibility.Visible;
-                    //TabItem_Fonts_Digital.MaxWidth = 10000;
-                    //TabItem_Fonts_Analog.IsEnabled = false;
-                    //TabItem_Fonts_Analog.Visibility = Visibility.Hidden;
-                    //TabItem_Fonts_Analog.MaxWidth = 0;
-                    //this.HideAnalogClockFont();
                     break;
 
                 case 2:
@@ -343,7 +302,7 @@ namespace Hodiny
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
             {
                 DefaultExt = ".png",
-                Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif"
+                Filter = "Image files (*.jpg, *.jpeg, *.gif, *.png) | *.jpg; *.jpeg; *.gif; *.png"
             };
 
             Nullable<bool> result = dlg.ShowDialog();

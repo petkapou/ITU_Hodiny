@@ -153,11 +153,6 @@ namespace Hodiny
             Digital_Date.FontSize = 15;
             Slider_Font_Size_DD.Value = 15;
 
-            //fontColorDate.A = 255;
-            //Slider_Font_Red.Value = fontColorDate.R;
-            //Slider_Font_Green.Value = fontColorDate.G;
-            //Slider_Font_Blue.Value = fontColorDate.B;
-
             CalculateTimeDatePosition();
 
             FillFontComboBox();
@@ -194,28 +189,10 @@ namespace Hodiny
             {
                 case 0:
                     mCallback(ClockTypes.Analog);
-                    //Grid_AnalogClock.Visibility = Visibility.Visible;
-                    //Grid_DigitalClock.Visibility = Visibility.Hidden;
-                    //CheckBox_Font.Visibility = Visibility.Visible;
-                    //if (CheckBox_Font.IsChecked == false)
-                    //    TabItem_Fonts.Visibility = Visibility.Hidden;
-                    //else
-                    //{
-                    //    TabItem_Fonts.Visibility = Visibility.Visible;
-                    //    this.ShowAnalogClockFont();
-                    //}
-                    //TabItem_AnalogClock.Visibility = Visibility.Visible;
-                    //TabItem_AnalogClock.IsEnabled = true;
                     break;
 
                 case 1:
                     mCallback(ClockTypes.Digital);
-                    //Grid_AnalogClock.Visibility = Visibility.Hidden;
-                    //Grid_DigitalClock.Visibility = Visibility.Visible;
-                    //CheckBox_Font.Visibility = Visibility.Hidden;
-                    //this.HideAnalogClockFont();
-                    //TabItem_Fonts.Visibility = Visibility.Visible;
-                    //TabItem_AnalogClock.IsEnabled = false;
                     break;
 
                 case 2:
@@ -332,10 +309,11 @@ namespace Hodiny
 
         private void Button_File_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-
-            dlg.DefaultExt = ".png";
-            dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog
+            {
+                DefaultExt = ".png",
+                Filter = "Image files (*.jpg, *.jpeg, *.gif, *.png) | *.jpg; *.jpeg; *.gif; *.png"
+            };
 
             Nullable<bool> result = dlg.ShowDialog();
 

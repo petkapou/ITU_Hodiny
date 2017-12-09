@@ -43,9 +43,6 @@ namespace Hodiny
 
         public void setClock(ClockTypes type)
         {
-            //App.Current.MainWindow.Hide();
-            //App.Current.MainWindow = clockObjects[(int)type];
-            //App.Current.MainWindow.Show();
             clockObjects[(int)previous].Hide();
             clockObjects[(int)type].Top = clockObjects[(int)previous].Top;
             clockObjects[(int)type].Left = clockObjects[(int)previous].Left;
