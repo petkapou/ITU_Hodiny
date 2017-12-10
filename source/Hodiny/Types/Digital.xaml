@@ -121,6 +121,18 @@
                             <ComboBoxItem Content="{DynamicResource ResourceKey=DigitalClock}"></ComboBoxItem>
                             <ComboBoxItem Content="{DynamicResource ResourceKey=SunClock}"></ComboBoxItem>
                         </ComboBox>
+                        
+                        <Label Content="{DynamicResource ResourceKey=Date_format}" Grid.ColumnSpan="5" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="ComboBox_Date_Format" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectionChanged="Actualize_Date" SelectedIndex="0">
+                            <ComboBoxItem Content="24.12.2018"></ComboBoxItem >
+                            <ComboBoxItem Content="24/12/2018"></ComboBoxItem >
+                            <ComboBoxItem Content="12.24.2018"></ComboBoxItem >
+                            <ComboBoxItem Content="12/24/2018"></ComboBoxItem >
+                            <ComboBoxItem Content="24.12"></ComboBoxItem >
+                            <ComboBoxItem Content="24/12"></ComboBoxItem >
+                            <ComboBoxItem Content="12.24"></ComboBoxItem >
+                            <ComboBoxItem Content="12/24"></ComboBoxItem >
+                        </ComboBox>
                     </Grid>
                 </TabItem>
 

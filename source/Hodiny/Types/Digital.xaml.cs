@@ -86,13 +86,54 @@ namespace Hodiny
             ));
         }
 
-        private void Actualize_Time_Date(object sender)
+        private void Actualize_Date(object sender)
         {
-            if (Digital_Date == null || ComboBox_Time_Format == null)
+            if (Digital_Date == null)
             {
                 return;
             }
-            Digital_Date.Content = DateTime.Now.Date;
+            switch (ComboBox_Date_Format.SelectedIndex)
+            {
+                case 0:
+                    Digital_Date.Content = DateTime.Now.Day + "." + DateTime.Now.Month + "." + DateTime.Now.Year;
+                    break;
+                case 1:
+                    Digital_Date.Content = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+                    break;
+                case 2:
+                    Digital_Date.Content = DateTime.Now.Month + "." + DateTime.Now.Day + "." + DateTime.Now.Year;
+                    break;
+                case 3:
+                    Digital_Date.Content = DateTime.Now.Month + "/" + DateTime.Now.Day + "/" + DateTime.Now.Year;
+                    break;
+                case 4:
+                    Digital_Date.Content = DateTime.Now.Day + "." + DateTime.Now.Month;
+                    break;
+                case 5:
+                    Digital_Date.Content = DateTime.Now.Day + "/" + DateTime.Now.Month;
+                    break;
+                case 6:
+                    Digital_Date.Content = DateTime.Now.Month + "." + DateTime.Now.Day;
+                    break;
+                case 7:
+                    Digital_Date.Content = DateTime.Now.Month + "/" + DateTime.Now.Day;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void Actualize_Date(object sender, RoutedEventArgs e)
+        {
+            Actualize_Date(sender);
+        }
+
+        private void Actualize_Time_Date(object sender)
+        {
+            if (Digital_Time == null || Digital_Date == null || ComboBox_Time_Format == null)
+            {
+                return;
+            }
             string tmp_time = "";
             bool pm_active = false;
             switch (ComboBox_Time_Format.SelectedIndex)
@@ -146,6 +187,7 @@ namespace Hodiny
                     break;
             }
             Digital_Time.Content = tmp_time;
+            Actualize_Date(sender);
         }
 
         private void Actualize_Time_Date(object sender, RoutedEventArgs e)

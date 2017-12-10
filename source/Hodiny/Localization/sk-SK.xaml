@@ -45,4 +45,5 @@
     <sys:String x:Key="Time_format">Formát Počítání Času</sys:String>
     <sys:String x:Key="Time_format_12">12 Hodin (am/pm)</sys:String>
     <sys:String x:Key="Time_format_14">24 Hodin</sys:String>
+    <sys:String x:Key="Date_format">Formát Data</sys:String>
 </ResourceDictionary>

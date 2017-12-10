@@ -112,6 +112,49 @@ namespace Hodiny
 
             }
         }
+        
+        private void Actualize_Date(object sender)
+        {
+            if (Analog_Date == null)
+            {
+                return;
+            }
+            switch (ComboBox_Date_Format.SelectedIndex)
+            {
+                case 0:
+                    Analog_Date.Content = DateTime.Now.Day + "." + DateTime.Now.Month + "." + DateTime.Now.Year;
+                    break;
+                case 1:
+                    Analog_Date.Content = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+                    break;
+                case 2:
+                    Analog_Date.Content = DateTime.Now.Month + "." + DateTime.Now.Day + "." + DateTime.Now.Year;
+                    break;
+                case 3:
+                    Analog_Date.Content = DateTime.Now.Month + "/" + DateTime.Now.Day + "/" + DateTime.Now.Year;
+                    break;
+                case 4:
+                    Analog_Date.Content = DateTime.Now.Day + "." + DateTime.Now.Month;
+                    break;
+                case 5:
+                    Analog_Date.Content = DateTime.Now.Day + "/" + DateTime.Now.Month;
+                    break;
+                case 6:
+                    Analog_Date.Content = DateTime.Now.Month + "." + DateTime.Now.Day;
+                    break;
+                case 7:
+                    Analog_Date.Content = DateTime.Now.Month + "/" + DateTime.Now.Day;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void Actualize_Date(object sender, RoutedEventArgs e)
+        {
+            Actualize_Date(sender);
+        }
+
 
         void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
@@ -122,6 +165,7 @@ namespace Hodiny
                 hourHandRotate.Angle = (DateTime.Now.Hour * 30) + (DateTime.Now.Minute * 0.5);
 
                 Analog_Date.Content = DateTime.Now.Date;
+                Actualize_Date(sender);
             }
             ));
         }
