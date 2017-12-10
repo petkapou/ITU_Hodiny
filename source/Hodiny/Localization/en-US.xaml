@@ -42,4 +42,7 @@
     <sys:String x:Key="Image">Image</sys:String>
     <sys:String x:Key="Style">Style:</sys:String>
     <sys:String x:Key="SunClock">Sun Clock</sys:String>
+    <sys:String x:Key="Time_format">Time Counting Format</sys:String>
+    <sys:String x:Key="Time_format_12">12 Hours (am/pm)</sys:String>
+    <sys:String x:Key="Time_format_14">24 Hours</sys:String>
 </ResourceDictionary>

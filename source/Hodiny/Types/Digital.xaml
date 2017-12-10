@@ -189,7 +189,13 @@
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
-                        <CheckBox x:Name="CheckBox_Show_Sec" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{DynamicResource ResourceKey=ShowSeconds}" Checked="Show_Sec_Actualize" Unchecked="Show_Sec_Actualize" IsChecked="True" Grid.ColumnSpan="5"/>
+                        <CheckBox x:Name="CheckBox_Show_Sec" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{DynamicResource ResourceKey=ShowSeconds}" Checked="Actualize_Time_Date" Unchecked="Actualize_Time_Date" IsChecked="True" Grid.ColumnSpan="5"/>
+
+                        <Label Content="{DynamicResource ResourceKey=Time_format}" Grid.ColumnSpan="5" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="ComboBox_Time_Format" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectionChanged="Actualize_Time_Date" SelectedIndex="1">
+                            <ComboBoxItem Content="{DynamicResource ResourceKey=Time_format_12}"></ComboBoxItem >
+                            <ComboBoxItem Content="{DynamicResource ResourceKey=Time_format_14}"></ComboBoxItem >
+                        </ComboBox>
                     </Grid>
                 </TabItem>
 

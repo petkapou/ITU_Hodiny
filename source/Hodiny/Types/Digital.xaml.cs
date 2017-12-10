@@ -81,34 +81,41 @@ namespace Hodiny
         {
             this.Dispatcher.Invoke(DispatcherPriority.Normal, (Action)(() =>
             {
-                Digital_Date.Content = DateTime.Now.Date;
-                string tmp_time = DateTime.Now.Hour + ":";
-                if (DateTime.Now.Minute < 10)
-                {
-                    tmp_time += "0";
-                }
-                tmp_time += DateTime.Now.Minute;
-                if (CheckBox_Show_Sec.IsChecked == true)
-                {
-                    tmp_time += ":";
-                    if (DateTime.Now.Second < 10)
-                    {
-                        tmp_time += "0";
-                    }
-                    tmp_time += DateTime.Now.Second;
-                }
-                Digital_Time.Content = tmp_time;
+                Actualize_Time_Date(sender);
             }
             ));
         }
 
-        private void Show_Sec_Actualize(object sender, RoutedEventArgs e)
+        private void Actualize_Time_Date(object sender)
         {
-            if (Digital_Time == null)
+            if (Digital_Date == null || ComboBox_Time_Format == null)
             {
                 return;
             }
-            string tmp_time = DateTime.Now.Hour + ":";
+            Digital_Date.Content = DateTime.Now.Date;
+            string tmp_time = "";
+            bool pm_active = false;
+            switch (ComboBox_Time_Format.SelectedIndex)
+            {
+                case 0: //12hodin
+                    int oclock = DateTime.Now.Hour;
+                    if (oclock > 12)
+                    {
+                        oclock -= 12;
+                        pm_active = true;
+                    }
+                    else if (oclock == 0)
+                    {
+                        oclock = 12;
+                    }
+                    tmp_time += oclock + ":";
+                    break;
+                case 1: //24hodin
+                    tmp_time += DateTime.Now.Hour + ":";
+                    break;
+                default:
+                    break;
+            }
             if (DateTime.Now.Minute < 10)
             {
                 tmp_time += "0";
@@ -123,7 +130,27 @@ namespace Hodiny
                 }
                 tmp_time += DateTime.Now.Second;
             }
+            switch (ComboBox_Time_Format.SelectedIndex)
+            {
+                case 0: //12hodin
+                    if (pm_active)
+                    {
+                        tmp_time += " pm";
+                    }
+                    else
+                    {
+                        tmp_time += " am";
+                    }
+                    break;
+                default:
+                    break;
+            }
             Digital_Time.Content = tmp_time;
+        }
+
+        private void Actualize_Time_Date(object sender, RoutedEventArgs e)
+        {
+            Actualize_Time_Date(sender);
         }
         
         private void Window_Loaded(object sender, RoutedEventArgs e)
