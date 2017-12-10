@@ -46,4 +46,6 @@
     <sys:String x:Key="Time_format_12">12 Hours (am/pm)</sys:String>
     <sys:String x:Key="Time_format_14">24 Hours</sys:String>
     <sys:String x:Key="Date_format">Date Format</sys:String>
+    <sys:String x:Key="Stroke_color">Middle triangle color</sys:String>
+    <sys:String x:Key="Bg_color">Background Color</sys:String>
 </ResourceDictionary>

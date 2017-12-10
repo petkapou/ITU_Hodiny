@@ -23,6 +23,7 @@ namespace Hodiny
         string activeBoard = "ShowMenu";
         System.Timers.Timer timer = new System.Timers.Timer(1000);
         private Color bgColor;
+        private Color strokeColor = new Color();
 
         private Action<ClockTypes> mCallback;
         private List<String> locales = new List<String>();
@@ -37,6 +38,12 @@ namespace Hodiny
             this.bgColor = bgColor;
             locales = locale;
             mCallback = callback;
+
+
+            strokeColor = (stroke_Polygon.Fill as SolidColorBrush).Color;
+            Slider_Stroke_Red.Value = strokeColor.R;
+            Slider_Stroke_Green.Value = strokeColor.G;
+            Slider_Stroke_Blue.Value = strokeColor.B;
         }
 
         void timerEvent(object sender, System.Timers.ElapsedEventArgs e)
@@ -200,6 +207,34 @@ namespace Hodiny
         public void SetBg(Color color)
         {
             Sun_Rectangle_Bg.Fill = new SolidColorBrush(color);
+        }
+
+
+        private void Slider_Stroke_Red_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider_Stroke_Red.Value = Math.Round(Slider_Stroke_Red.Value);
+            strokeColor.R = (byte)Slider_Stroke_Red.Value;
+            Set_Stroke_Color();
+        }
+
+        private void Slider_Stroke_Green_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider_Stroke_Green.Value = Math.Round(Slider_Stroke_Green.Value);
+            strokeColor.G = (byte)Slider_Stroke_Green.Value;
+            Set_Stroke_Color();
+        }
+
+        private void Slider_Stroke_Blue_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider_Stroke_Blue.Value = Math.Round(Slider_Stroke_Blue.Value);
+            strokeColor.B = (byte)Slider_Stroke_Blue.Value;
+            Set_Stroke_Color();
+        }
+
+        private void Set_Stroke_Color()
+        {
+            stroke_Polygon.Fill = new SolidColorBrush(strokeColor);
+            stroke_Polygon.Stroke = new SolidColorBrush(strokeColor);
         }
 
         private void Button_Done_Click(object sender, RoutedEventArgs e)

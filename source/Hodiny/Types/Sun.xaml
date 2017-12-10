@@ -152,6 +152,8 @@
                             <ComboBoxItem Content="{DynamicResource ResourceKey=Color}"></ComboBoxItem >
                             <ComboBoxItem Content="{DynamicResource ResourceKey=Image}"></ComboBoxItem >
                         </ComboBox>-->
+
+                        <Label Content="{DynamicResource ResourceKey=Bg_color}" Grid.ColumnSpan="5" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                         <Label x:Name="Label_Red" Grid.Row="2" Grid.Column="0" Content="{DynamicResource ResourceKey=Red}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                         <Slider x:Name="Slider_Red" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Red_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
                         <TextBox x:Name="TextBox_Red" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Red,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
@@ -187,6 +189,19 @@
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
+
+                        <Label Content="{DynamicResource ResourceKey=Stroke_color}" Grid.ColumnSpan="5" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <Label x:Name="Label_Stroke_Red" Grid.Row="1" Grid.Column="0" Content="{DynamicResource ResourceKey=Red}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <Slider x:Name="Slider_Stroke_Red" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Stroke_Red_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                        <TextBox x:Name="TextBox_Stroke_Red" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Stroke_Red,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+
+                        <Label x:Name="Label_Stroke_Green" Grid.Row="2" Grid.Column="0" Content="{DynamicResource ResourceKey=Green}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <Slider x:Name="Slider_Stroke_Green" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Stroke_Green_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                        <TextBox x:Name="TextBox_Stroke_Green" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Stroke_Green,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+
+                        <Label x:Name="Label_Stroke_Blue" Grid.Row="3" Grid.Column="0" Content="{DynamicResource ResourceKey=Blue}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <Slider x:Name="Slider_Stroke_Blue" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Stroke_Blue_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
+                        <TextBox x:Name="TextBox_Stroke_Blue" Grid.Row="3" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Stroke_Blue,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                     </Grid>
                 </TabItem>
                 <TabItem x:Name="TabItem_Exit"  Style="{StaticResource ItemExitStyle}" Content="Closing application...">
@@ -209,7 +224,7 @@
         <Grid x:Name="Grid_SunClock" Opacity="{Binding ElementName=Slider_Transparency,Path=Value}" Visibility="Visible">
             <Rectangle x:Name="Sun_Rectangle_Bg" Fill="Gray" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.IsSharedSizeScope="True"/>
             <Polygon Name="shadow" Fill="DarkGray"/>
-            <Polygon Points="0,0 10,10, 20,0"  VerticalAlignment="Center" HorizontalAlignment="Center" Stroke="Black" Fill="Black" />
+            <Polygon Name="stroke_Polygon" Points="0,0 10,10, 20,0"  VerticalAlignment="Center" HorizontalAlignment="Center" Stroke="Black" Fill="Black"/>
         </Grid>
     </Grid>
 </Window>
