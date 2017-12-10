@@ -20,7 +20,7 @@ namespace Hodiny
 {
     public partial class Sun : Window
     {
-        string activeBoard = "HideMenu";
+        string activeBoard = "ShowMenu";
         System.Timers.Timer timer = new System.Timers.Timer(1000);
         private Color bgColor;
 

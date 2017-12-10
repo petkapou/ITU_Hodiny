@@ -20,7 +20,7 @@ namespace Hodiny
 {
     public partial class Digital : Window
     {
-        string activeBoard = "HideMenu";
+        string activeBoard = "ShowMenu";
         private Color bgColor;
         private Color fontColorTime = new Color();
         private Color fontColorDate = new Color();

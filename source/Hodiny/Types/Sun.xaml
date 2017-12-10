@@ -27,7 +27,7 @@
     </Window.Resources>
 
     <Grid x:Name="grid">
-        <Grid Panel.ZIndex="2" Name="pnlLeftMenu" HorizontalAlignment="Left" MaxHeight="700" Margin="-325,0,0,0">
+        <Grid Panel.ZIndex="2" Name="pnlLeftMenu" HorizontalAlignment="Left" MaxHeight="700" Margin="0,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
