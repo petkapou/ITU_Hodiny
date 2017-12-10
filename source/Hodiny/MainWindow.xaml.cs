@@ -31,15 +31,15 @@ namespace Hodiny
         public MainWindow()
         {
             InitializeComponent();
-
+    
+            bgColor = Color.FromArgb(255, 128, 128, 128);
             clockObjects.Add(new Analog(bgColor, locales, setClock));
             clockObjects.Add(new Digital(bgColor, locales, setClock));
+            bgColor = Color.FromArgb(255, 200, 200, 200);
             clockObjects.Add(new Sun(bgColor, locales, setClock));
 
-            bgColor = Color.FromArgb(255, 255, 255, 255);
-
             this.Hide();
-            setClock(ClockTypes.Sun);
+            setClock(ClockTypes.Analog);
         }
 
         public void setClock(ClockTypes type)

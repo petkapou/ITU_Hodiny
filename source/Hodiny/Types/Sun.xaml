@@ -207,8 +207,8 @@
         </Grid>
 
         <Grid x:Name="Grid_SunClock" Opacity="{Binding ElementName=Slider_Transparency,Path=Value}" Visibility="Visible">
-            <Rectangle x:Name="Sun_Rectangle_Bg" Fill="WhiteSmoke" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.IsSharedSizeScope="True"/>
-            <Polygon Name="shadow" Fill="Gray" />
+            <Rectangle x:Name="Sun_Rectangle_Bg" Fill="Gray" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.IsSharedSizeScope="True"/>
+            <Polygon Name="shadow" Fill="DarkGray"/>
             <Polygon Points="0,0 10,10, 20,0"  VerticalAlignment="Center" HorizontalAlignment="Center" Stroke="Black" Fill="Black" />
         </Grid>
     </Grid>

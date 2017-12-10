@@ -24,6 +24,7 @@ namespace Hodiny
         private Color bgColor;
         private Color fontColorTime = new Color();
         private Color fontColorDate = new Color();
+        System.Timers.Timer timer = new System.Timers.Timer(1000);
 
         private Action<ClockTypes> mCallback;
         private List<String> locales = new List<String>();
@@ -35,6 +36,8 @@ namespace Hodiny
             fontColorDate = Color.FromArgb(255, 255, 255, 255);
             fontColorTime = Color.FromArgb(255, 0, 0, 0);
 
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(Timer_Elapsed);
+            timer.Enabled = true;
             this.bgColor = bgColor;
             locales = locale;
             mCallback = callback;

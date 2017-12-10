@@ -338,7 +338,7 @@
             <Ellipse x:Name="Ellipse_Bg" Fill="Gray" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.IsSharedSizeScope="True"/>
             <Label Name="Analog_Date" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,30,0,0" Content="5/12/2017"/>
 
-            <Rectangle Name="rectangleHour"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="5" Height="70"  RenderTransformOrigin="0.5,1" Fill="Yellow">
+            <Rectangle Name="rectangleHour"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="5" Height="70"  RenderTransformOrigin="0.5,1" Fill="Yellow" Panel.ZIndex="20">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <RotateTransform x:Name="hourHandRotate" Angle="0" />
@@ -347,7 +347,7 @@
                 </Rectangle.RenderTransform>
             </Rectangle>
 
-            <Rectangle Name="rectangleMinute" VerticalAlignment="Center" HorizontalAlignment="Center" Fill="Green" Width="5" Height="90"  RenderTransformOrigin="0.5,1">
+            <Rectangle Name="rectangleMinute" VerticalAlignment="Center" HorizontalAlignment="Center" Fill="Green" Width="5" Height="90"  RenderTransformOrigin="0.5,1" Panel.ZIndex="20">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <RotateTransform x:Name="minuteHandRotate" Angle="0" />
@@ -356,7 +356,7 @@
                 </Rectangle.RenderTransform>
             </Rectangle>
 
-            <Rectangle Name="rectangleSecond" VerticalAlignment="Center" HorizontalAlignment="Center" Fill="Blue"  Width="5" Height="120" RenderTransformOrigin="0.5,1">
+            <Rectangle Name="rectangleSecond" VerticalAlignment="Center" HorizontalAlignment="Center" Fill="Blue"  Width="5" Height="120" RenderTransformOrigin="0.5,1" Panel.ZIndex="20">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <RotateTransform x:Name="secondHandRotate" Angle="0" />
