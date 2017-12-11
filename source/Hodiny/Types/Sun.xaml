@@ -147,13 +147,12 @@
                         <Slider x:Name="Slider_Transparency" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Transparency_ValueChanged" Maximum="1" Minimum="0.05" SmallChange="0.01" SelectionEnd="-1" LargeChange="0.1" Value="1"/>
                         <TextBox x:Name="TextBox_Transparency" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Transparency,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
-                        <!--<Label Content="{DynamicResource ResourceKey=Style}" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <Label Content="{DynamicResource ResourceKey=Style}" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                         <ComboBox x:Name="ComboBox_Bg_Type" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectionChanged="ComboBox_Bg_Type_SelectionChanged" SelectedIndex="-1">
                             <ComboBoxItem Content="{DynamicResource ResourceKey=Color}"></ComboBoxItem >
                             <ComboBoxItem Content="{DynamicResource ResourceKey=Image}"></ComboBoxItem >
-                        </ComboBox>-->
-
-                        <Label Content="{DynamicResource ResourceKey=Bg_color}" Grid.ColumnSpan="5" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <ComboBoxItem Content="{DynamicResource ResourceKey=Theme}"></ComboBoxItem >
+                        </ComboBox>
                         <Label x:Name="Label_Red" Grid.Row="2" Grid.Column="0" Content="{DynamicResource ResourceKey=Red}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                         <Slider x:Name="Slider_Red" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Red_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
                         <TextBox x:Name="TextBox_Red" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Red,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
@@ -166,8 +165,10 @@
                         <Slider x:Name="Slider_Blue" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Blue_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
                         <TextBox x:Name="TextBox_Blue" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding ElementName=Slider_Blue,Path=Value}" Height="22" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
-                        <!--<TextBox x:Name="TextBox_File" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" Height="23" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Disabled" MaxLines="1"/>
-                        <Button x:Name="Button_File" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" Content="{DynamicResource ResourceKey=ChooseFile}" HorizontalAlignment="Right" VerticalAlignment="Center" Height="23" Click="Button_File_Click"/>-->
+                        <TextBox x:Name="TextBox_File" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" Height="23" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Disabled" MaxLines="1"/>
+                        <Button x:Name="Button_File" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" Content="{DynamicResource ResourceKey=ChooseFile}" HorizontalAlignment="Right" VerticalAlignment="Center" Height="23" Click="Button_File_Click"/>
+
+                        <ComboBox x:Name="ComboBox_Theme" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectionChanged="ComboBox_Theme_SelectionChanged" SelectedIndex="-1"/>
                     </Grid>
                 </TabItem>
 
@@ -223,7 +224,8 @@
 
         <Grid x:Name="Grid_SunClock" Opacity="{Binding ElementName=Slider_Transparency,Path=Value}" Visibility="Visible">
             <Rectangle x:Name="Sun_Rectangle_Bg" Fill="Gray" ScrollViewer.VerticalScrollBarVisibility="Disabled" Grid.IsSharedSizeScope="True"/>
-            <Polygon Name="shadow" Fill="DarkGray"/>
+            <Polygon Name="shadow1" Fill="DarkSlateGray"/>
+            <Polygon Name="shadow2" Fill="DarkSlateGray"/>
             <Polygon Name="stroke_Polygon" Points="0,0 10,10, 20,0"  VerticalAlignment="Center" HorizontalAlignment="Center" Stroke="Black" Fill="Black"/>
         </Grid>
     </Grid>

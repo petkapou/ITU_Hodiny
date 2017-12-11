@@ -5,8 +5,8 @@
     <!-- The name of this ResourceDictionary. Should not be localized. -->
     <!-- DO NOT LOCALIZE -->
     <sys:String x:Key="ResourceDictionaryName">Loc-sk-SK</sys:String>
-    
-    <!-- LANGUAGE NAME -->
+
+    <!-- Language name as seen in ComboBox_Lang-->
     <sys:String x:Key="LanguageName">Slovenčina</sys:String>
 
     <!-- Localized strings -->
@@ -48,4 +48,5 @@
     <sys:String x:Key="Date_format">Formát Dátumu:</sys:String>
     <sys:String x:Key="Stroke_color">Farba stredového trojuholníku:</sys:String>
     <sys:String x:Key="Bg_color">Farba pozadia:</sys:String>
+    <sys:String x:Key="Theme">Téma</sys:String>
 </ResourceDictionary>

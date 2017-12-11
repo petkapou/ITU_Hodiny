@@ -91,6 +91,11 @@ namespace Hodiny
             CalculateTimeDatePosition();
 
             FillFontComboBox(ComobBox_Fonts);
+
+            AddThemes();
+
+            ComboBox_Bg_Type.SelectedIndex = 2;
+            ComboBox_Theme.SelectedIndex = 0;
         }
 
         void AddLanguages()
@@ -109,10 +114,27 @@ namespace Hodiny
                     ComboBox_Lang.Items.Add(languageDictionary["LanguageName"].ToString());
                     locales.Add(languageDictionary["ResourceDictionaryName"].ToString().Replace("Loc-", ""));
                 }
-
             }
         }
-        
+
+        void AddThemes()
+        {
+            String directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            directory = System.IO.Path.Combine(directory, "Themes", "Analog");
+            DirectoryInfo d = new DirectoryInfo(directory);
+            String filepath;
+            foreach (var file in d.GetFiles("*.xaml"))
+            {
+                filepath = System.IO.Path.Combine(directory, file.Name);
+                var languageDictionary = new ResourceDictionary();
+                languageDictionary.Source = new Uri(filepath);
+                if (languageDictionary.Contains("ThemeName"))
+                {
+                    ComboBox_Theme.Items.Add(languageDictionary["ThemeName"].ToString());
+                }
+            }
+        }
+
         private void Actualize_Date(object sender)
         {
             if (Analog_Date == null)
@@ -263,6 +285,10 @@ namespace Hodiny
                     TextBox_File.Visibility = Visibility.Hidden;
                     Button_File.IsEnabled = false;
                     Button_File.Visibility = Visibility.Hidden;
+
+                    ComboBox_Theme.IsEnabled = false;
+                    ComboBox_Theme.Visibility = Visibility.Hidden;
+                    SetBg(bgColor);
                     break;
 
                 case 1:
@@ -291,6 +317,43 @@ namespace Hodiny
                     TextBox_File.Visibility = Visibility.Visible;
                     Button_File.IsEnabled = true;
                     Button_File.Visibility = Visibility.Visible;
+
+                    ComboBox_Theme.IsEnabled = false;
+                    ComboBox_Theme.Visibility = Visibility.Hidden;
+                    break;
+
+                case 2:
+                    Label_Red.IsEnabled = false;
+                    Label_Red.Visibility = Visibility.Hidden;
+                    Slider_Red.IsEnabled = false;
+                    Slider_Red.Visibility = Visibility.Hidden;
+                    TextBox_Red.IsEnabled = false;
+                    TextBox_Red.Visibility = Visibility.Hidden;
+
+                    Label_Green.IsEnabled = false;
+                    Label_Green.Visibility = Visibility.Hidden;
+                    Slider_Green.IsEnabled = false;
+                    Slider_Green.Visibility = Visibility.Hidden;
+                    TextBox_Green.IsEnabled = false;
+                    TextBox_Green.Visibility = Visibility.Hidden;
+
+                    Label_Blue.IsEnabled = false;
+                    Label_Blue.Visibility = Visibility.Hidden;
+                    Slider_Blue.IsEnabled = false;
+                    Slider_Blue.Visibility = Visibility.Hidden;
+                    TextBox_Blue.IsEnabled = false;
+                    TextBox_Blue.Visibility = Visibility.Hidden;
+
+                    TextBox_File.IsEnabled = false;
+                    TextBox_File.Visibility = Visibility.Hidden;
+                    Button_File.IsEnabled = false;
+                    Button_File.Visibility = Visibility.Hidden;
+
+                    ComboBox_Theme.IsEnabled = true;
+                    ComboBox_Theme.Visibility = Visibility.Visible;
+                    int tmp = ComboBox_Theme.SelectedIndex;
+                    ComboBox_Theme.SelectedIndex = -1;
+                    ComboBox_Theme.SelectedIndex = tmp;
                     break;
 
                 default:
@@ -734,6 +797,72 @@ namespace Hodiny
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void ComboBox_Theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ComboBox_Theme.SelectedIndex == -1)
+                return;
+            String directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            directory = System.IO.Path.Combine(directory, "Themes", "Analog");
+            DirectoryInfo d = new DirectoryInfo(directory);
+            String filepath;
+            String imagepath;
+            foreach (var file in d.GetFiles("*.xaml"))
+            {
+                filepath = System.IO.Path.Combine(directory, file.Name);
+                var languageDictionary = new ResourceDictionary();
+                languageDictionary.Source = new Uri(filepath);
+                if (languageDictionary.Contains("ThemeName"))
+                {
+                    if (languageDictionary["ThemeName"].ToString() == ComboBox_Theme.SelectedItem.ToString())
+                    {
+                        switch(languageDictionary["Type"].ToString())
+                        {
+                            case "Image":
+                                imagepath = System.IO.Path.Combine(directory, languageDictionary["ImageFileName"].ToString());
+                                this.Ellipse_Bg.Fill = new ImageBrush(new BitmapImage(new Uri(imagepath)));
+                                break;
+                            case "Color":
+                                bgColor.R = byte.Parse(languageDictionary["BgColorR"].ToString());
+                                bgColor.G = byte.Parse(languageDictionary["BgColorG"].ToString());
+                                bgColor.B = byte.Parse(languageDictionary["BgColorB"].ToString());
+                                Slider_Red.Value = bgColor.R;
+                                Slider_Green.Value = bgColor.G;
+                                Slider_Blue.Value = bgColor.B;
+                                SetBg(bgColor);
+                                break;
+                            default:
+                                break;
+                        }
+
+                        CheckBox_AT.IsChecked = (languageDictionary["TimeFontEnabled"].ToString() == "true");
+                        CheckBox_AD.IsChecked = (languageDictionary["DateFontEnabled"].ToString() == "true");
+
+                        if (CheckBox_AT.IsChecked == true)
+                        {
+                            fontColorTime.R = byte.Parse(languageDictionary["TimeFontR"].ToString());
+                            fontColorTime.G = byte.Parse(languageDictionary["TimeFontG"].ToString());
+                            fontColorTime.B = byte.Parse(languageDictionary["TimeFontB"].ToString());
+                            Slider_Font_Red.Value = fontColorTime.R;
+                            Slider_Font_Green.Value = fontColorTime.G;
+                            Slider_Font_Blue.Value = fontColorTime.B;
+                            SetFontColor_AT(fontColorTime);
+                        }
+
+                        if (CheckBox_AD.IsChecked == true)
+                        {
+                            fontColorDate.R = byte.Parse(languageDictionary["DateFontR"].ToString());
+                            fontColorDate.G = byte.Parse(languageDictionary["DateFontG"].ToString());
+                            fontColorDate.B = byte.Parse(languageDictionary["DateFontB"].ToString());
+                            Slider_Font_Red_AD.Value = fontColorDate.R;
+                            Slider_Font_Green_AD.Value = fontColorDate.G;
+                            Slider_Font_Blue_AD.Value = fontColorDate.B;
+                            SetFontColor_AD(fontColorDate);
+                        }
+                    }
+                }
             }
         }
     }

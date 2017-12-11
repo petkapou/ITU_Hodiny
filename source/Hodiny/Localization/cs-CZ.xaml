@@ -48,4 +48,5 @@
     <sys:String x:Key="Date_format">Formát Data:</sys:String>
     <sys:String x:Key="Stroke_color">Barva středového trojúhelníku:</sys:String>
     <sys:String x:Key="Bg_color">Barva pozadí:</sys:String>
+    <sys:String x:Key="Theme">Téma</sys:String>
 </ResourceDictionary>

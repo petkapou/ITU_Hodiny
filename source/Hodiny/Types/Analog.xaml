@@ -163,6 +163,7 @@
                         <ComboBox x:Name="ComboBox_Bg_Type" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectionChanged="ComboBox_Bg_Type_SelectionChanged" SelectedIndex="-1">
                             <ComboBoxItem Content="{DynamicResource ResourceKey=Color}"></ComboBoxItem >
                             <ComboBoxItem Content="{DynamicResource ResourceKey=Image}"></ComboBoxItem >
+                            <ComboBoxItem Content="{DynamicResource ResourceKey=Theme}"></ComboBoxItem >
                         </ComboBox>
                         <Label x:Name="Label_Red" Grid.Row="2" Grid.Column="0" Content="{DynamicResource ResourceKey=Red}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                         <Slider x:Name="Slider_Red" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" ValueChanged="Slider_Red_ValueChanged" Maximum="255" SmallChange="1" SelectionEnd="-1" LargeChange="10"/>
@@ -178,6 +179,8 @@
 
                         <TextBox x:Name="TextBox_File" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" Height="23" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Disabled" MaxLines="1"/>
                         <Button x:Name="Button_File" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" Content="{DynamicResource ResourceKey=ChooseFile}" HorizontalAlignment="Right" VerticalAlignment="Center" Height="23" Click="Button_File_Click"/>
+                        
+                        <ComboBox x:Name="ComboBox_Theme" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectionChanged="ComboBox_Theme_SelectionChanged" SelectedIndex="-1"/>
                     </Grid>
                 </TabItem>
 

@@ -73,7 +73,24 @@ namespace Hodiny
                     ComboBox_Lang.Items.Add(languageDictionary["LanguageName"].ToString());
                     locales.Add(languageDictionary["ResourceDictionaryName"].ToString().Replace("Loc-", ""));
                 }
+            }
+        }
 
+        void AddThemes()
+        {
+            String directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            directory = System.IO.Path.Combine(directory, "Themes", "Digital");
+            DirectoryInfo d = new DirectoryInfo(directory);
+            String filepath;
+            foreach (var file in d.GetFiles("*.xaml"))
+            {
+                filepath = System.IO.Path.Combine(directory, file.Name);
+                var languageDictionary = new ResourceDictionary();
+                languageDictionary.Source = new Uri(filepath);
+                if (languageDictionary.Contains("ThemeName"))
+                {
+                    ComboBox_Theme.Items.Add(languageDictionary["ThemeName"].ToString());
+                }
             }
         }
 
@@ -95,28 +112,28 @@ namespace Hodiny
             switch (ComboBox_Date_Format.SelectedIndex)
             {
                 case 0:
-                    Digital_Date.Content = DateTime.Now.Day + "." + DateTime.Now.Month + "." + DateTime.Now.Year;
+                    Digital_Date.Text = DateTime.Now.Day + "." + DateTime.Now.Month + "." + DateTime.Now.Year;
                     break;
                 case 1:
-                    Digital_Date.Content = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+                    Digital_Date.Text = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
                     break;
                 case 2:
-                    Digital_Date.Content = DateTime.Now.Month + "." + DateTime.Now.Day + "." + DateTime.Now.Year;
+                    Digital_Date.Text = DateTime.Now.Month + "." + DateTime.Now.Day + "." + DateTime.Now.Year;
                     break;
                 case 3:
-                    Digital_Date.Content = DateTime.Now.Month + "/" + DateTime.Now.Day + "/" + DateTime.Now.Year;
+                    Digital_Date.Text = DateTime.Now.Month + "/" + DateTime.Now.Day + "/" + DateTime.Now.Year;
                     break;
                 case 4:
-                    Digital_Date.Content = DateTime.Now.Day + "." + DateTime.Now.Month;
+                    Digital_Date.Text = DateTime.Now.Day + "." + DateTime.Now.Month;
                     break;
                 case 5:
-                    Digital_Date.Content = DateTime.Now.Day + "/" + DateTime.Now.Month;
+                    Digital_Date.Text = DateTime.Now.Day + "/" + DateTime.Now.Month;
                     break;
                 case 6:
-                    Digital_Date.Content = DateTime.Now.Month + "." + DateTime.Now.Day;
+                    Digital_Date.Text = DateTime.Now.Month + "." + DateTime.Now.Day;
                     break;
                 case 7:
-                    Digital_Date.Content = DateTime.Now.Month + "/" + DateTime.Now.Day;
+                    Digital_Date.Text = DateTime.Now.Month + "/" + DateTime.Now.Day;
                     break;
                 default:
                     break;
@@ -186,7 +203,7 @@ namespace Hodiny
                 default:
                     break;
             }
-            Digital_Time.Content = tmp_time;
+            Digital_Time.Text = tmp_time;
             Actualize_Date(sender);
         }
 
@@ -228,6 +245,11 @@ namespace Hodiny
             CalculateTimeDatePosition();
 
             FillFontComboBox();
+
+            AddThemes();
+
+            ComboBox_Bg_Type.SelectedIndex = 2;
+            ComboBox_Theme.SelectedIndex = 0;
         }
 
         private void FillFontComboBox()
@@ -304,11 +326,15 @@ namespace Hodiny
                     Slider_Blue.Visibility = Visibility.Visible;
                     TextBox_Blue.IsEnabled = true;
                     TextBox_Blue.Visibility = Visibility.Visible;
-                    
+
                     TextBox_File.IsEnabled = false;
                     TextBox_File.Visibility = Visibility.Hidden;
                     Button_File.IsEnabled = false;
                     Button_File.Visibility = Visibility.Hidden;
+
+                    ComboBox_Theme.IsEnabled = false;
+                    ComboBox_Theme.Visibility = Visibility.Hidden;
+                    SetBg(bgColor);
                     break;
 
                 case 1:
@@ -332,11 +358,48 @@ namespace Hodiny
                     Slider_Blue.Visibility = Visibility.Hidden;
                     TextBox_Blue.IsEnabled = false;
                     TextBox_Blue.Visibility = Visibility.Hidden;
-                    
+
                     TextBox_File.IsEnabled = true;
                     TextBox_File.Visibility = Visibility.Visible;
                     Button_File.IsEnabled = true;
                     Button_File.Visibility = Visibility.Visible;
+
+                    ComboBox_Theme.IsEnabled = false;
+                    ComboBox_Theme.Visibility = Visibility.Hidden;
+                    break;
+
+                case 2:
+                    Label_Red.IsEnabled = false;
+                    Label_Red.Visibility = Visibility.Hidden;
+                    Slider_Red.IsEnabled = false;
+                    Slider_Red.Visibility = Visibility.Hidden;
+                    TextBox_Red.IsEnabled = false;
+                    TextBox_Red.Visibility = Visibility.Hidden;
+
+                    Label_Green.IsEnabled = false;
+                    Label_Green.Visibility = Visibility.Hidden;
+                    Slider_Green.IsEnabled = false;
+                    Slider_Green.Visibility = Visibility.Hidden;
+                    TextBox_Green.IsEnabled = false;
+                    TextBox_Green.Visibility = Visibility.Hidden;
+
+                    Label_Blue.IsEnabled = false;
+                    Label_Blue.Visibility = Visibility.Hidden;
+                    Slider_Blue.IsEnabled = false;
+                    Slider_Blue.Visibility = Visibility.Hidden;
+                    TextBox_Blue.IsEnabled = false;
+                    TextBox_Blue.Visibility = Visibility.Hidden;
+
+                    TextBox_File.IsEnabled = false;
+                    TextBox_File.Visibility = Visibility.Hidden;
+                    Button_File.IsEnabled = false;
+                    Button_File.Visibility = Visibility.Hidden;
+
+                    ComboBox_Theme.IsEnabled = true;
+                    ComboBox_Theme.Visibility = Visibility.Visible;
+                    int tmp = ComboBox_Theme.SelectedIndex;
+                    ComboBox_Theme.SelectedIndex = -1;
+                    ComboBox_Theme.SelectedIndex = tmp;
                     break;
 
                 default:
@@ -567,6 +630,71 @@ namespace Hodiny
             activeBoard = "HideMenu";
             Storyboard sb = Resources[activeBoard] as Storyboard;
             sb.Begin(pnlLeftMenu);
+        }
+
+        private void ComboBox_Theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ComboBox_Theme.SelectedIndex == -1)
+                return;
+            String directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            directory = System.IO.Path.Combine(directory, "Themes", "Digital");
+            DirectoryInfo d = new DirectoryInfo(directory);
+            String filepath;
+            String imagepath;
+            foreach (var file in d.GetFiles("*.xaml"))
+            {
+                filepath = System.IO.Path.Combine(directory, file.Name);
+                var languageDictionary = new ResourceDictionary();
+                languageDictionary.Source = new Uri(filepath);
+                if (languageDictionary.Contains("ThemeName"))
+                {
+                    if (languageDictionary["ThemeName"].ToString() == ComboBox_Theme.SelectedItem.ToString())
+                    {
+                        switch (languageDictionary["Type"].ToString())
+                        {
+                            case "Image":
+                                imagepath = System.IO.Path.Combine(directory, languageDictionary["ImageFileName"].ToString());
+                                this.Rectangle_Bg.Fill = new ImageBrush(new BitmapImage(new Uri(imagepath)));
+                                break;
+                            case "Color":
+                                bgColor.R = byte.Parse(languageDictionary["BgColorR"].ToString());
+                                bgColor.G = byte.Parse(languageDictionary["BgColorG"].ToString());
+                                bgColor.B = byte.Parse(languageDictionary["BgColorB"].ToString());
+                                Slider_Red.Value = bgColor.R;
+                                Slider_Green.Value = bgColor.G;
+                                Slider_Blue.Value = bgColor.B;
+                                SetBg(bgColor);
+                                break;
+                            default:
+                                break;
+                        }
+
+                        CheckBox_DD.IsChecked = (languageDictionary["DateFontEnabled"].ToString() == "true");
+
+                        if (languageDictionary["TimeFontEnabled"].ToString() == "true")
+                        {
+                            fontColorTime.R = byte.Parse(languageDictionary["TimeFontR"].ToString());
+                            fontColorTime.G = byte.Parse(languageDictionary["TimeFontG"].ToString());
+                            fontColorTime.B = byte.Parse(languageDictionary["TimeFontB"].ToString());
+                            Slider_Font_Red_DT.Value = fontColorTime.R;
+                            Slider_Font_Green_DT.Value = fontColorTime.G;
+                            Slider_Font_Blue_DT.Value = fontColorTime.B;
+                            SetFontColor_DT(fontColorTime);
+                        }
+
+                        if (CheckBox_DD.IsChecked == true)
+                        {
+                            fontColorDate.R = byte.Parse(languageDictionary["DateFontR"].ToString());
+                            fontColorDate.G = byte.Parse(languageDictionary["DateFontG"].ToString());
+                            fontColorDate.B = byte.Parse(languageDictionary["DateFontB"].ToString());
+                            Slider_Font_Red_DD.Value = fontColorDate.R;
+                            Slider_Font_Green_DD.Value = fontColorDate.G;
+                            Slider_Font_Blue_DD.Value = fontColorDate.B;
+                            SetFontColor_DD(fontColorDate);
+                        }
+                    }
+                }
+            }
         }
     }
 }

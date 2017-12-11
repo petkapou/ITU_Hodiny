@@ -5,8 +5,8 @@
     <!-- The name of this ResourceDictionary. Should not be localized. -->
     <!-- DO NOT LOCALIZE -->
     <sys:String x:Key="ResourceDictionaryName">Loc-en-US</sys:String>
-    
-    <!-- LANGUAGE NAME -->
+
+    <!-- Language name as seen in ComboBox_Lang-->
     <sys:String x:Key="LanguageName">English</sys:String>
     
     <!-- Localized strings -->
@@ -48,4 +48,5 @@
     <sys:String x:Key="Date_format">Date Format:</sys:String>
     <sys:String x:Key="Stroke_color">Middle triangle color:</sys:String>
     <sys:String x:Key="Bg_color">Background Color:</sys:String>
+    <sys:String x:Key="Theme">Theme</sys:String>
 </ResourceDictionary>
