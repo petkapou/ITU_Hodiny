@@ -42,10 +42,10 @@
     <sys:String x:Key="Image">Obrázok</sys:String>
     <sys:String x:Key="Style">Štýl:</sys:String>
     <sys:String x:Key="SunClock">Slnečné Hodiny</sys:String>
-    <sys:String x:Key="Time_format">Formát Počítání Času</sys:String>
+    <sys:String x:Key="Time_format">Formát Počítania Času:</sys:String>
     <sys:String x:Key="Time_format_12">12 Hodin (am/pm)</sys:String>
     <sys:String x:Key="Time_format_14">24 Hodin</sys:String>
-    <sys:String x:Key="Date_format">Formát Data</sys:String>
-    <sys:String x:Key="Stroke_color">Barva stredového trojúhelníku</sys:String>
-    <sys:String x:Key="Bg_color">Barva pozadia</sys:String>
+    <sys:String x:Key="Date_format">Formát Dátumu:</sys:String>
+    <sys:String x:Key="Stroke_color">Farba stredového trojuholníku:</sys:String>
+    <sys:String x:Key="Bg_color">Farba pozadia:</sys:String>
 </ResourceDictionary>
